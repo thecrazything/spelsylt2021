@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IMovement
 {
     void OnMove(float x, float y);
+    void OnLook(Vector2 dir);
 }

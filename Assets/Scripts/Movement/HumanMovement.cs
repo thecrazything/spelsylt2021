@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsectMovement : MonoBehaviour, IMovement
+public class HumanMovement : MonoBehaviour, IMovement
 {
-    public float speed = 10f;
-    public float rotSpeed = 1000f;
+    public float speed = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +26,13 @@ public class InsectMovement : MonoBehaviour, IMovement
             movement = movement.normalized;
         }
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
-        if (movement != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.AngleAxis(angle + 90, Vector3.forward), Time.deltaTime * rotSpeed);
-        }
     }
 
     public void OnLook(Vector2 dir)
     {
-        // Do nothing
+        Quaternion rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(0, 0, 90);
+        rotation.x = transform.rotation.x;
+        rotation.y = transform.rotation.y;
+        transform.rotation = rotation;
     }
 }
