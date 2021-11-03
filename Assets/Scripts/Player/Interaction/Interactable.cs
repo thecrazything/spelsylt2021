@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    SpriteRenderer r;
+    
     public string Name = "Interactable";
+
+    void Start()
+    {
+        r = GetComponent<SpriteRenderer>();
+    }
+
+    public void OnUnfocused()
+    {
+        Debug.Log(Name + " lost focus");
+        r.color = Color.white;
+    }
+
+    public void OnFocused()
+    {
+        Debug.Log(Name + " got focus");
+        r.color = Color.red;
+    }
 
     public void Interact()
     {
