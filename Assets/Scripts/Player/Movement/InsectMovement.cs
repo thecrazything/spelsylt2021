@@ -21,6 +21,10 @@ public class InsectMovement : MonoBehaviour, IPlayerMovement
     public void OnMove(float x, float y)
     {
         Vector2 movement = new Vector2(x, y);
+        if (movement.magnitude > 1)
+        {
+            movement = movement.normalized;
+        }
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
         if (movement != Vector2.zero)
         {
