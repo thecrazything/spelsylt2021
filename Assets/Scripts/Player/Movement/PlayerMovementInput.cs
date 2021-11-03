@@ -7,11 +7,11 @@ public class PlayerMovementInput : MonoBehaviour
     private static readonly string AXIS_HORIZONTAL = "Horizontal";
     private static readonly string AXIS_VERTICAL = "Vertical";
 
-    private IPlayerMovement _ActiveMovement;
+    private IMovement _ActiveMovement;
     // Start is called before the first frame update
     void Start()
     {
-        _ActiveMovement = GetComponent<IPlayerMovement>();
+        _ActiveMovement = GetComponent<IMovement>();
     }
 
     // Update is called once per frame

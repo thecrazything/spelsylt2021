@@ -380,9 +380,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1788189578423525288, guid: e36647bfccd49e042944dea5678ca562, type: 3}
-      propertyPath: maxMouseOffset
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e36647bfccd49e042944dea5678ca562, type: 3}

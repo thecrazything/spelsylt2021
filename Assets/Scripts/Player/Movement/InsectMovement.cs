@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsectMovement : MonoBehaviour, IPlayerMovement
+public class InsectMovement : MonoBehaviour, IMovement
 {
     public float speed = 10f;
     public float rotSpeed = 1000f;
