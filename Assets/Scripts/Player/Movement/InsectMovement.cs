@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class InsectMovement : MonoBehaviour, IMovement
 {
+    private Interactor _Interactor;
+    private Puppeteering _Puppeteering;
     public float speed = 10f;
     public float rotSpeed = 1000f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _Interactor = GetComponent<Interactor>();
+        _Puppeteering = GetComponent<Puppeteering>();
     }
 
     // Update is called once per frame
@@ -36,5 +39,16 @@ public class InsectMovement : MonoBehaviour, IMovement
     public void OnLook(Vector2 dir)
     {
         // Do nothing
+    }
+
+    public void OnAction(ActionEnum action)
+    {
+        if (action == ActionEnum.Interact)
+        {
+            _Interactor?.Interact();
+        } else if(action == ActionEnum.Puppeteer)
+        {
+            _Puppeteering?.Puppeteer();
+        }
     }
 }

@@ -16,10 +16,7 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-        }
+
     }
 
     void OnDestroy()
@@ -47,7 +44,7 @@ public class Interactor : MonoBehaviour
         focusedTransform = null;
     }
 
-    void Interact()
+    public void Interact()
     {
         if (focusedInteractable != null)
         {

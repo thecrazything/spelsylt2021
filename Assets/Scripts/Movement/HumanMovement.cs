@@ -35,4 +35,9 @@ public class HumanMovement : MonoBehaviour, IMovement
         rotation.y = transform.rotation.y;
         transform.rotation = rotation;
     }
+
+    public void OnAction(ActionEnum action)
+    {
+
+    }
 }

@@ -6,12 +6,16 @@ public class PlayerMovementInput : MonoBehaviour
 {
     private static readonly string AXIS_HORIZONTAL = "Horizontal";
     private static readonly string AXIS_VERTICAL = "Vertical";
+    private static readonly string BUTTON_INTERACT = "Interact";
+    private static readonly string BUTTON_PUPPETEER = "Puppeteer";
 
     private IMovement _ActiveMovement;
+    private IMovement _DefaultMovement;
     // Start is called before the first frame update
     void Start()
     {
         _ActiveMovement = GetComponent<IMovement>();
+        _DefaultMovement = _ActiveMovement;
     }
 
     // Update is called once per frame
@@ -27,6 +31,25 @@ public class PlayerMovementInput : MonoBehaviour
         {
             _ActiveMovement.OnMove(x, y);
             _ActiveMovement.OnLook(new Vector2(mouseX, mouseY).normalized); // TODO controler stick support?
+
+            if (Input.GetButtonUp(BUTTON_INTERACT))
+            {
+                _ActiveMovement.OnAction(ActionEnum.Interact);
+            }
+            if (Input.GetButtonUp(BUTTON_PUPPETEER))
+            {
+                _ActiveMovement.OnAction(ActionEnum.Puppeteer);
+            }
         }
+    }
+
+    public void SetMovement(IMovement movement)
+    {
+        _ActiveMovement = movement;
+    }
+
+    public void ResetMovement()
+    {
+        _ActiveMovement = _DefaultMovement;
     }
 }
