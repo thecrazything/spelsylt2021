@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IController
         if (_ActivePossesable != null)
         {
             _ActivePossesable.OnMove(x, y);
-            _ActivePossesable.OnLook(new Vector2(mouseX, mouseY).normalized); // TODO controler stick support?
+            _ActivePossesable.OnLook(new Vector2(mouseX, mouseY));
 
             if (Input.GetButtonUp(BUTTON_INTERACT))
             {
