@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Puppeteering : MonoBehaviour
 {
-    private PlayerMovementInput _PlayerMovementInput;
+    private PlayerController _PlayerMovementInput;
     private Puppetable _CurrentPuppet;
     public GameObject debugTarget;
     // Start is called before the first frame update
     void Start()
     {
-        _PlayerMovementInput = GetComponent<PlayerMovementInput>();
+        _PlayerMovementInput = GetComponent<PlayerController>();
         if (!_PlayerMovementInput)
         {
             throw new MissingComponentException("Missing PlayerMovementInput");

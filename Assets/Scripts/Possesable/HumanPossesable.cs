@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanMovement : MonoBehaviour, IMovement
+public class HumanPossesable : MonoBehaviour, IPossesable
 {
     public float speed = 1f;
 

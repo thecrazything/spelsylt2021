@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Puppetable : MonoBehaviour
 {
-    private IMovement _PupetMovement;
+    private IPossesable _PupetMovement;
     // Start is called before the first frame update
     void Start()
     {
-        _PupetMovement = GetComponent<IMovement>();
+        _PupetMovement = GetComponent<IPossesable>();
         if (_PupetMovement == null)
         {
             throw new MissingComponentException("Pupet needs IMovement component, otherwise player wont know how it controls.");
@@ -21,7 +21,7 @@ public class Puppetable : MonoBehaviour
         
     }
 
-    public IMovement GetMovement()
+    public IPossesable GetMovement()
     {
         return _PupetMovement;
     }

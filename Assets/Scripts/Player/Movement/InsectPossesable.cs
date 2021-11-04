@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsectMovement : MonoBehaviour, IMovement
+public class InsectPossesable : MonoBehaviour, IPossesable
 {
     private Interactor _Interactor;
     private Puppeteering _Puppeteering;

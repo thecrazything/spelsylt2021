@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 2100337632290643972}
   - component: {fileID: 855662279444536880}
   - component: {fileID: 758110642200255235}
+  - component: {fileID: 1904127565}
+  - component: {fileID: 1904127566}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -179,3 +181,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb3b0825bfd0564c90aa9c2241ff4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &1904127565
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593385508555672330}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!114 &1904127566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593385508555672330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e119b06334e213341b884c788d543288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugTarget: {fileID: 0}

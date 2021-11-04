@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementInput : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private static readonly string AXIS_HORIZONTAL = "Horizontal";
     private static readonly string AXIS_VERTICAL = "Vertical";
     private static readonly string BUTTON_INTERACT = "Interact";
     private static readonly string BUTTON_PUPPETEER = "Puppeteer";
 
-    private IMovement _ActiveMovement;
-    private IMovement _DefaultMovement;
+    private IPossesable _ActiveMovement;
+    private IPossesable _DefaultMovement;
     // Start is called before the first frame update
     void Start()
     {
-        _ActiveMovement = GetComponent<IMovement>();
+        _ActiveMovement = GetComponent<IPossesable>();
         _DefaultMovement = _ActiveMovement;
     }
 
@@ -43,7 +43,7 @@ public class PlayerMovementInput : MonoBehaviour
         }
     }
 
-    public void SetMovement(IMovement movement)
+    public void SetMovement(IPossesable movement)
     {
         _ActiveMovement = movement;
     }
