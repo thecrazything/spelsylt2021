@@ -6,7 +6,8 @@ public class Puppeteering : MonoBehaviour
 {
     private PlayerController _PlayerMovementInput;
     private Puppetable _CurrentPuppet;
-    public GameObject debugTarget;
+    private GameObject _Target;
+    public GameObject _PuppetFinder;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +27,11 @@ public class Puppeteering : MonoBehaviour
     public void Puppeteer()
     {
         // TODO check if puppet avalible, then run MakeTargetPuppet on that
-        if (!_CurrentPuppet)
+        if (!_CurrentPuppet && _Target)
         {
-            MakeTargetPuppet(debugTarget);
+            MakeTargetPuppet(_Target);
         }
-        else
+        else if (_CurrentPuppet)
         {
             DropPuppet();
         }
@@ -58,5 +59,15 @@ public class Puppeteering : MonoBehaviour
             _CurrentPuppet = null;
             // TODO drop a corpse
         }
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        _Target = target;
+    }
+
+    public void NoTarget()
+    {
+        _Target = null;
     }
 }
