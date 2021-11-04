@@ -10,7 +10,7 @@ public class Puppeteering : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _PlayerMovementInput = GetComponent<PlayerController>();
+        _PlayerMovementInput = transform.parent.GetComponent<PlayerController>();
         if (!_PlayerMovementInput)
         {
             throw new MissingComponentException("Missing PlayerMovementInput");
@@ -43,22 +43,20 @@ public class Puppeteering : MonoBehaviour
         {
             return;
         }
-        _PlayerMovementInput.SetMovement(puppet.GetMovement());
+        _PlayerMovementInput.SetPossessed(puppet.GetMovement());
         _CurrentPuppet = puppet;
-        transform.position = target.transform.position;
-        transform.parent = target.transform; // This might be a bad idea
-        // TODO hide player
-        // TODO disable player collision
-        // TODO disable AI things
+        transform.parent.position = target.transform.position;
+        transform.parent.parent = target.transform; // This might be a bad idea
     }
 
-    private void DropPuppet()
+    public void DropPuppet()
     {
-        _PlayerMovementInput.ResetMovement();
-        Destroy(_CurrentPuppet.gameObject);
-        _CurrentPuppet = null;
-        transform.parent = null;
-        // TODO unhide player
-        // TODO drop a corpse
+        if (_CurrentPuppet)
+        {
+            transform.parent.parent = null;
+            Destroy(_CurrentPuppet.gameObject);
+            _CurrentPuppet = null;
+            // TODO drop a corpse
+        }
     }
 }

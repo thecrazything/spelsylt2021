@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IController
 {
     private static readonly string AXIS_HORIZONTAL = "Horizontal";
     private static readonly string AXIS_VERTICAL = "Vertical";
     private static readonly string BUTTON_INTERACT = "Interact";
     private static readonly string BUTTON_PUPPETEER = "Puppeteer";
 
-    private IPossesable _ActiveMovement;
-    private IPossesable _DefaultMovement;
+    private IPossesable _ActivePossesable;
+    private IPossesable _DefaultPossesable;
     // Start is called before the first frame update
     void Start()
     {
-        _ActiveMovement = GetComponent<IPossesable>();
-        _DefaultMovement = _ActiveMovement;
+        _ActivePossesable = GetComponent<IPossesable>();
+        _DefaultPossesable = _ActivePossesable;
     }
 
     // Update is called once per frame
@@ -27,29 +27,33 @@ public class PlayerController : MonoBehaviour
         Vector2 mousePos = new Vector2(Input.mousePosition.x - Screen.width / 2, Input.mousePosition.y - Screen.height / 2);
         float mouseX = mousePos.x;
         float mouseY = mousePos.y;
-        if (_ActiveMovement != null)
+        if (_ActivePossesable != null)
         {
-            _ActiveMovement.OnMove(x, y);
-            _ActiveMovement.OnLook(new Vector2(mouseX, mouseY).normalized); // TODO controler stick support?
+            _ActivePossesable.OnMove(x, y);
+            _ActivePossesable.OnLook(new Vector2(mouseX, mouseY).normalized); // TODO controler stick support?
 
             if (Input.GetButtonUp(BUTTON_INTERACT))
             {
-                _ActiveMovement.OnAction(ActionEnum.Interact);
+                _ActivePossesable.OnAction(ActionEnum.Interact);
             }
             if (Input.GetButtonUp(BUTTON_PUPPETEER))
             {
-                _ActiveMovement.OnAction(ActionEnum.Puppeteer);
+                _ActivePossesable.OnAction(ActionEnum.Puppeteer);
             }
         }
     }
 
-    public void SetMovement(IPossesable movement)
+    public void SetPossessed(IPossesable possesable)
     {
-        _ActiveMovement = movement;
+        _ActivePossesable?.OnUnPossess();
+        _ActivePossesable = possesable;
+        _ActivePossesable?.OnPossess(this);
     }
 
-    public void ResetMovement()
+    public void ResetPossessed()
     {
-        _ActiveMovement = _DefaultMovement;
+        _ActivePossesable?.OnUnPossess();
+        _ActivePossesable = _DefaultPossesable;
+        _ActivePossesable?.OnPossess(this);
     }
 }

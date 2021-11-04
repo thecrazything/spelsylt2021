@@ -5,6 +5,7 @@ using UnityEngine;
 public class HumanPossesable : MonoBehaviour, IPossesable
 {
     public float speed = 1f;
+    private IController _Controller;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,19 @@ public class HumanPossesable : MonoBehaviour, IPossesable
 
     public void OnAction(ActionEnum action)
     {
+        if (action == ActionEnum.Puppeteer)
+        {
+            _Controller.ResetPossessed();
+        }
+    }
 
+    public void OnPossess(IController controller)
+    {
+        _Controller = controller;
+    }
+
+    public void OnUnPossess()
+    {
+        _Controller = null;
     }
 }

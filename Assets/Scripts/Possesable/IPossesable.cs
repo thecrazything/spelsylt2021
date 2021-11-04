@@ -8,4 +8,8 @@ public interface IPossesable
     void OnLook(Vector2 dir);
 
     void OnAction(ActionEnum action);
+
+    void OnPossess(IController controller);
+
+    void OnUnPossess();
 }

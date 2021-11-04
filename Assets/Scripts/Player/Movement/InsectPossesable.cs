@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InsectPossesable : MonoBehaviour, IPossesable
 {
+    public GameObject _SubPlayer;
     private Interactor _Interactor;
     private Puppeteering _Puppeteering;
     public float speed = 10f;
@@ -11,8 +12,8 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     // Start is called before the first frame update
     void Start()
     {
-        _Interactor = GetComponent<Interactor>();
-        _Puppeteering = GetComponent<Puppeteering>();
+        _Interactor = _SubPlayer.GetComponent<Interactor>();
+        _Puppeteering = _SubPlayer.GetComponent<Puppeteering>();
     }
 
     // Update is called once per frame
@@ -50,5 +51,16 @@ public class InsectPossesable : MonoBehaviour, IPossesable
         {
             _Puppeteering?.Puppeteer();
         }
+    }
+
+    public void OnPossess(IController controller)
+    {
+        _SubPlayer.SetActive(true);
+        _Puppeteering.DropPuppet();
+    }
+
+    public void OnUnPossess()
+    {
+        _SubPlayer.SetActive(false);
     }
 }
