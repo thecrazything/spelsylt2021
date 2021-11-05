@@ -33,7 +33,7 @@ public class InsectPossesable : MonoBehaviour, IPossesable
         if (movement != Vector2.zero)
         {
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.AngleAxis(angle + 90, Vector3.forward), Time.deltaTime * rotSpeed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.AngleAxis(angle + 90, Vector3.forward), Time.deltaTime * rotSpeed * movement.magnitude);
         }
     }
 
