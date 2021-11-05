@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IController
     private static readonly string AXIS_VERTICAL = "Vertical";
     private static readonly string BUTTON_INTERACT = "Interact";
     private static readonly string BUTTON_PUPPETEER = "Puppeteer";
+    private static readonly string BUTTON_FIRE = "Fire1";
 
     private IPossesable _ActivePossesable;
     private IPossesable _DefaultPossesable;
@@ -39,6 +40,10 @@ public class PlayerController : MonoBehaviour, IController
             if (Input.GetButtonUp(BUTTON_PUPPETEER))
             {
                 _ActivePossesable.OnAction(ActionEnum.Puppeteer);
+            }
+            if (Input.GetButton(BUTTON_FIRE))
+            {
+                _ActivePossesable.OnAction(ActionEnum.FireWeapon);
             }
         }
     }

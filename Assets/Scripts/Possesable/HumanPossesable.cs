@@ -6,6 +6,12 @@ public class HumanPossesable : MonoBehaviour, IPossesable
 {
     public float speed = 1f;
     private IController _Controller;
+    private WeaponHandler _WeaponHandler;
+
+    public void Start()
+    {
+        _WeaponHandler = GetComponent<WeaponHandler>();
+    }
 
     public void OnMove(float x, float y)
     {
@@ -27,6 +33,16 @@ public class HumanPossesable : MonoBehaviour, IPossesable
         if (action == ActionEnum.Puppeteer)
         {
             _Controller.ResetPossessed();
+        } else if (action == ActionEnum.FireWeapon)
+        {
+            if (_WeaponHandler)
+            {
+                _WeaponHandler.Fire();
+            }
+            else
+            {
+                throw new MissingComponentException("Tried to fire, but there is no weapon handler");
+            }
         }
     }
 
@@ -38,5 +54,14 @@ public class HumanPossesable : MonoBehaviour, IPossesable
     public void OnUnPossess()
     {
         _Controller = null;
+    }
+
+    public bool HasFeature(FeaturesEnum feature)
+    {
+        if (feature == FeaturesEnum.Weapon)
+        {
+            return _WeaponHandler;
+        }
+        return false;
     }
 }

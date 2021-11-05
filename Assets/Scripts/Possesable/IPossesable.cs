@@ -12,4 +12,6 @@ public interface IPossesable
     void OnPossess(IController controller);
 
     void OnUnPossess();
+
+    bool HasFeature(FeaturesEnum features);
 }

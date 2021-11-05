@@ -63,4 +63,9 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     {
         _SubPlayer.SetActive(false);
     }
+
+    public bool HasFeature(FeaturesEnum features)
+    {
+        return false;
+    }
 }
