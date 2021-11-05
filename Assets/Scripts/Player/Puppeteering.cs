@@ -55,9 +55,9 @@ public class Puppeteering : MonoBehaviour
         if (_CurrentPuppet)
         {
             transform.parent.parent = null;
-            Destroy(_CurrentPuppet.gameObject);
+            IDeathHandler deathHandler = _CurrentPuppet.gameObject.GetComponent<IDeathHandler>();
+            deathHandler?.Hit();
             _CurrentPuppet = null;
-            // TODO drop a corpse
         }
     }
 
