@@ -13,7 +13,7 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     void Start()
     {
         _Interactor = _SubPlayer.GetComponent<Interactor>();
-        _Puppeteering = _SubPlayer.GetComponent<Puppeteering>();
+        _Puppeteering = GetComponent<Puppeteering>();
     }
 
     // Update is called once per frame

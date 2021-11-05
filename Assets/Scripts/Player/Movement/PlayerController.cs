@@ -57,8 +57,11 @@ public class PlayerController : MonoBehaviour, IController
 
     public void ResetPossessed()
     {
-        _ActivePossesable?.OnUnPossess();
-        _ActivePossesable = _DefaultPossesable;
-        _ActivePossesable?.OnPossess(this);
+        if (_ActivePossesable != _DefaultPossesable)
+        {
+            _ActivePossesable?.OnUnPossess();
+            _ActivePossesable = _DefaultPossesable;
+            _ActivePossesable?.OnPossess(this);
+        }
     }
 }

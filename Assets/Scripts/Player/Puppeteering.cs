@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class Puppeteering : MonoBehaviour
 {
-    private PlayerController _PlayerMovementInput;
+    private PlayerController _PlayerController;
     private Puppetable _CurrentPuppet;
     private GameObject _Target;
-    public GameObject _PuppetFinder;
+    private float _PuppetMaxtime = 10f; // TODO adjust to reasonable length
+    private float _PuppetTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        _PlayerMovementInput = transform.parent.GetComponent<PlayerController>();
-        if (!_PlayerMovementInput)
+        _PlayerController = transform.GetComponent<PlayerController>();
+        if (!_PlayerController)
         {
-            throw new MissingComponentException("Missing PlayerMovementInput");
+            throw new MissingComponentException("Missing PlayerController");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (_CurrentPuppet)
+        {
+            _PuppetTimer += Time.deltaTime;
+            if (_PuppetTimer >= _PuppetMaxtime)
+            {
+                DropPuppet();
+            }
+        }
     }
 
     public void Puppeteer()
@@ -39,22 +47,25 @@ public class Puppeteering : MonoBehaviour
 
     private void MakeTargetPuppet(GameObject target)
     {
+        _PuppetTimer = 0;
         Puppetable puppet = target.GetComponent<Puppetable>();
         if (!puppet)
         {
             return;
         }
-        _PlayerMovementInput.SetPossessed(puppet.GetMovement());
+        _PlayerController.SetPossessed(puppet.GetMovement());
         _CurrentPuppet = puppet;
-        transform.parent.position = target.transform.position;
-        transform.parent.parent = target.transform; // This might be a bad idea
+        transform.position = target.transform.position;
+        transform.rotation = target.transform.rotation * Quaternion.Euler(0,0,180);
+        transform.parent = target.transform; // This might be a bad idea
     }
 
     public void DropPuppet()
     {
         if (_CurrentPuppet)
         {
-            transform.parent.parent = null;
+            _PlayerController.ResetPossessed();
+            transform.parent = null;
             IDeathHandler deathHandler = _CurrentPuppet.gameObject.GetComponent<IDeathHandler>();
             deathHandler?.Hit();
             _CurrentPuppet = null;

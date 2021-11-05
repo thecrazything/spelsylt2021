@@ -10,7 +10,7 @@ public class PuppetFinder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _Puppeteering = transform.parent.GetComponent<Puppeteering>();
+        _Puppeteering = transform.parent.parent.GetComponent<Puppeteering>();
     }
 
     // Update is called once per frame
