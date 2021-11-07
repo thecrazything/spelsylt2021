@@ -28,7 +28,10 @@ public class AIController : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
-        _AIBehaviour?.GetRootNode().Evaluate(_ActivePossesable);
+        if (_ActivePossesable != null)
+        {
+            _AIBehaviour?.GetRootNode().Evaluate(_ActivePossesable);
+        }
     }
 
     public void SetPossessed(IPossesable possesable)
@@ -40,11 +43,10 @@ public class AIController : MonoBehaviour, IController
 
     public void ResetPossessed()
     {
-        if (_ActivePossesable != _DefaultPossesable)
+        if (_ActivePossesable != null)
         {
             _ActivePossesable?.OnUnPossess();
-            _ActivePossesable = _DefaultPossesable;
-            _ActivePossesable?.OnPossess(this);
+            _ActivePossesable = null;
         }
     }
 }
