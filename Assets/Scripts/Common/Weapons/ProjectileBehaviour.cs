@@ -22,6 +22,10 @@ public class ProjectileBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
         _TTLCounter += Time.deltaTime;
-        // TODO handle hit
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }

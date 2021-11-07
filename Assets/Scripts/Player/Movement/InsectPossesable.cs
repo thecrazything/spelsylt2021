@@ -7,6 +7,8 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     public GameObject _SubPlayer;
     private Interactor _Interactor;
     private Puppeteering _Puppeteering;
+    private Rigidbody2D _Rigid;
+    private Collider2D _Collider;
     public float speed = 10f;
     public float rotSpeed = 1000f;
     // Start is called before the first frame update
@@ -14,6 +16,8 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     {
         _Interactor = _SubPlayer.GetComponent<Interactor>();
         _Puppeteering = GetComponent<Puppeteering>();
+        _Rigid = GetComponent<Rigidbody2D>();
+        _Collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -56,12 +60,14 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     public void OnPossess(IController controller)
     {
         _SubPlayer.SetActive(true);
+        _Collider.enabled = false;
         _Puppeteering.DropPuppet();
     }
 
     public void OnUnPossess()
     {
         _SubPlayer.SetActive(false);
+        _Collider.enabled = true;
     }
 
     public bool HasFeature(FeaturesEnum features)

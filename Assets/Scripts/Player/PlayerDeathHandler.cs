@@ -8,7 +8,7 @@ public class PlayerDeathHandler : MonoBehaviour, IDeathHandler
     public void Hit()
     {
         _GameManager.OnPlayerDeath();
-        Destroy(transform.parent.gameObject); // TODO Handle death
+        Destroy(transform.gameObject); // TODO Handle death
     }
 
     // Start is called before the first frame update

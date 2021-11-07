@@ -28,14 +28,13 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
         Vector3 fireDir = transform.up;
         Vector3 origin = transform.position;
         origin += fireDir * FireOffset; // Offset so we dont hit ourself
-        RaycastHit2D hit = Physics2D.Raycast(origin, fireDir, Range);
         GameObject instance = Instantiate(_Projectile);
         instance.transform.position = origin;
         instance.transform.rotation = transform.rotation;
+        RaycastHit2D hit = Physics2D.Raycast(origin, fireDir, Range);
         // TODO projectile
         if (hit)
         {
-            Destroy(instance);
             IDeathHandler deathHandler = hit.collider.gameObject.GetComponent<IDeathHandler>();
             if (deathHandler != null)
             {
