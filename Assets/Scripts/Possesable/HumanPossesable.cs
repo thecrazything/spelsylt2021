@@ -64,4 +64,9 @@ public class HumanPossesable : MonoBehaviour, IPossesable
         }
         return false;
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

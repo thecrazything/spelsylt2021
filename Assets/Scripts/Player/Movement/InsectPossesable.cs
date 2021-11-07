@@ -74,4 +74,9 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     {
         return false;
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

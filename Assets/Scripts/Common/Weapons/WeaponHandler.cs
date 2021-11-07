@@ -67,22 +67,24 @@ public class WeaponHandler : MonoBehaviour
                 return NodeStates.Failure;
             }
 
-
-            Vector3 curPos = transform.position;
+            Transform origin = posseable.GetGameObject().transform;
+            Vector3 curPos = origin.position;
             Vector3 dir = (player.transform.position - curPos).normalized;
 
             // Aim at player
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * AimSpeed);
+            origin.rotation = Quaternion.Slerp(origin.rotation, q, Time.deltaTime * AimSpeed);
 
-            // check if we are done aiming
             // TODO Try to aim infront of the player? Might make it too accurate.
             float dotProd = Vector3.Dot(dir, transform.up);
-            // TODO make sure nothing is blocking (simple raytrace, if we dont hit anything or hit the player, we fire)
             if (dotProd >= AimFuzz)
             {
-                return NodeStates.Success; // We are aiming at the player
+                Vector3 fireDir = origin.up;
+                Vector3 from = origin.position;
+                from += fireDir * 2.0f; // Offset so we dont hit ourself
+                RaycastHit2D hit = Physics2D.Raycast(from, fireDir, 100f);
+                return hit.collider.gameObject.tag == "Player" ? NodeStates.Success : NodeStates.Failure;
             }
 
             return NodeStates.Failure; // We are not, so any action depending on us aiming should be ignored

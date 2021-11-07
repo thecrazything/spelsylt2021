@@ -14,4 +14,6 @@ public interface IPossesable
     void OnUnPossess();
 
     bool HasFeature(FeaturesEnum features);
+
+    GameObject GetGameObject();
 }
