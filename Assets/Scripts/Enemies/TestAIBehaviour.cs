@@ -10,7 +10,9 @@ public class TestAIBehaviour : MonoBehaviour, IAIBehaviour
     void Start()
     {
         WeaponHandler weaponHandler = GetComponent<WeaponHandler>();
-        _Root = weaponHandler.GetAimFireSequenceNode();
+        NavigationBehaviour navigationBehaviour = GetComponent<NavigationBehaviour>();
+        // _Root = new SelectorNode(new List<Node> { weaponHandler.GetAimFireSequenceNode() });
+        _Root = navigationBehaviour.GetPatrolNode();
     }
 
     // Update is called once per frame

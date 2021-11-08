@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Extend this for different AI types
@@ -10,12 +11,14 @@ public class AIController : MonoBehaviour, IController
     private IPossesable _ActivePossesable;
     private IPossesable _DefaultPossesable;
     private IAIBehaviour _AIBehaviour;
+    private NavMeshAgent _NavMeshAgent;
 
     // Start is called before the first frame update
     void Start()
     {
         _ActivePossesable = GetComponent<IPossesable>();
         _DefaultPossesable = _ActivePossesable;
+        _NavMeshAgent = GetComponent<NavMeshAgent>();
 
         if (_DefaultPossesable == null)
         {
@@ -30,7 +33,18 @@ public class AIController : MonoBehaviour, IController
     {
         if (_ActivePossesable != null)
         {
+            if (_NavMeshAgent)
+            {
+                _NavMeshAgent.enabled = true;
+            }
             _AIBehaviour?.GetRootNode().Evaluate(_ActivePossesable);
+        } 
+        else
+        {
+            if (_NavMeshAgent)
+            {
+                _NavMeshAgent.enabled = false;
+            }
         }
     }
 
@@ -45,7 +59,7 @@ public class AIController : MonoBehaviour, IController
     {
         if (_ActivePossesable != null)
         {
-            _ActivePossesable?.OnUnPossess();
+            _ActivePossesable.OnUnPossess();
             _ActivePossesable = null;
         }
     }

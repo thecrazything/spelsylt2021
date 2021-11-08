@@ -84,16 +84,23 @@ public class WeaponHandler : MonoBehaviour
                 Vector3 from = origin.position;
                 from += fireDir * 2.0f; // Offset so we dont hit ourself
                 RaycastHit2D hit = Physics2D.Raycast(from, fireDir, 100f);
-                return hit.collider.gameObject.tag == "Player" ? NodeStates.Success : NodeStates.Failure;
+                return !hit || hit.collider.gameObject.tag == "Player" ? NodeStates.Success : NodeStates.Failure;
             }
 
             return NodeStates.Failure; // We are not, so any action depending on us aiming should be ignored
         });
     }
 
+    public ActionNode GetHasAmmoNode()
+    {
+        return new ActionNode((posseable) => {
+            return _TotalAmmo > 0 ? NodeStates.Success : NodeStates.Failure;
+        });   
+    }
+
     public SequenceNode GetAimFireSequenceNode()
     {
-        List<Node> nodes = new List<Node> { GetAimAtPlayerNode(), GetFireNode() };
+        List<Node> nodes = new List<Node> {GetHasAmmoNode(), GetAimAtPlayerNode(), GetFireNode() };
         return new SequenceNode(nodes);
     }
 }

@@ -32,7 +32,7 @@ public class HumanPossesable : MonoBehaviour, IPossesable
     {
         if (action == ActionEnum.Puppeteer)
         {
-            _Controller.ResetPossessed();
+            _Controller?.ResetPossessed();
         } else if (action == ActionEnum.FireWeapon)
         {
             if (_WeaponHandler)

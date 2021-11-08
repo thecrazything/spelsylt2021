@@ -5,12 +5,12 @@ using UnityEngine;
 public class Puppetable : MonoBehaviour
 {
     private IPossesable _PupetMovement;
-    private IDeathHandler _DeathHandler;
+    private IController _Controller;
     // Start is called before the first frame update
     void Start()
     {
         _PupetMovement = GetComponent<IPossesable>();
-        _DeathHandler = GetComponent<IDeathHandler>();
+        _Controller = GetComponent<IController>();
         if (_PupetMovement == null)
         {
             throw new MissingComponentException("Pupet needs IMovement component, otherwise player wont know how it controls.");
@@ -23,8 +23,13 @@ public class Puppetable : MonoBehaviour
         
     }
 
-    public IPossesable GetMovement()
+    public IPossesable GetPossesable()
     {
         return _PupetMovement;
+    }
+
+    public IController GetController()
+    {
+        return _Controller;
     }
 }

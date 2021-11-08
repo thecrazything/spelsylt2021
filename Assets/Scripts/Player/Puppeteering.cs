@@ -53,7 +53,8 @@ public class Puppeteering : MonoBehaviour
         {
             return;
         }
-        _PlayerController.SetPossessed(puppet.GetMovement());
+        puppet.GetController().ResetPossessed();
+        _PlayerController.SetPossessed(puppet.GetPossesable());
         _CurrentPuppet = puppet;
         transform.position = target.transform.position;
         transform.rotation = target.transform.rotation * Quaternion.Euler(0,0,180);
@@ -66,7 +67,7 @@ public class Puppeteering : MonoBehaviour
         {
             _PlayerController.ResetPossessed();
             transform.parent = null;
-            IDeathHandler deathHandler = _CurrentPuppet.gameObject.GetComponent<IDeathHandler>();
+            IDeathHandler deathHandler = _CurrentPuppet?.gameObject?.GetComponent<IDeathHandler>();
             deathHandler?.Hit();
             _CurrentPuppet = null;
         }
