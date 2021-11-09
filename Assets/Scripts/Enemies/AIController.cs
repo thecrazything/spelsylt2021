@@ -12,6 +12,8 @@ public class AIController : MonoBehaviour, IController
     private IPossesable _DefaultPossesable;
     private IAIBehaviour _AIBehaviour;
     private NavMeshAgent _NavMeshAgent;
+    private NavigationBehaviour _NavBehaviour;
+    public PlayerDetectorBehaviour PlayerDetectorBehaviour;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class AIController : MonoBehaviour, IController
         _ActivePossesable = GetComponent<IPossesable>();
         _DefaultPossesable = _ActivePossesable;
         _NavMeshAgent = GetComponent<NavMeshAgent>();
+        _NavBehaviour = GetComponent<NavigationBehaviour>();
 
         if (_DefaultPossesable == null)
         {
@@ -62,5 +65,11 @@ public class AIController : MonoBehaviour, IController
             _ActivePossesable.OnUnPossess();
             _ActivePossesable = null;
         }
+    }
+
+    public void SetAlerted(Vector3 playerPos)
+    {
+        PlayerDetectorBehaviour.SetAlerted();
+        _NavBehaviour.SetLastPlayerLocation(playerPos);
     }
 }

@@ -5669,10 +5669,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6812296350717478861, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
-      propertyPath: _AwarenessTimeout
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6812296352206913888, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -5720,10 +5716,6 @@ PrefabInstance:
     - target: {fileID: 6812296352206913901, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
       propertyPath: m_Name
       value: Scientist
-      objectReference: {fileID: 0}
-    - target: {fileID: 6812296352206913912, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
-      propertyPath: PatrolNodes.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6812296352206913912, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
       propertyPath: PatrolNodes.Array.data[0]

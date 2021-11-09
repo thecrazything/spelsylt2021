@@ -40,10 +40,11 @@ public class PlayerDetectorBehaviour : MonoBehaviour
             Vector3 from = transform.parent.position;
             Vector3 dir = (_Player.transform.position - from).normalized;
             from += dir * 2.0f; // Offset so we dont hit ourself
-            RaycastHit2D hit = Physics2D.Raycast(from, dir, 1000f, VisibilityMask);
+            RaycastHit2D hit = Physics2D.Raycast(from, dir, 100f, VisibilityMask);
             _CanSeePlayer =  !hit || hit.collider.gameObject.tag == "Player";
             if (_CanSeePlayer)
             {
+                AIManager.GetInstance().AlertPlayerLocation(_Player.transform.position);
                 _AwareOfPlayer = true;
             }
             else
@@ -90,5 +91,11 @@ public class PlayerDetectorBehaviour : MonoBehaviour
         {
             return _AwareOfPlayer ? NodeStates.Success : NodeStates.Failure;
         }));
+    }
+
+    public void SetAlerted()
+    {
+        _AwareOfPlayer = true;
+        _AwarnessTimer = 0;
     }
 }

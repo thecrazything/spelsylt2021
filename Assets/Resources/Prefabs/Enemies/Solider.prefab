@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 3882147400859070058}
   m_Layer: 0
   m_Name: Solider
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c85bfb87fba2249919addf1d214691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerDetectorBehaviour: {fileID: 3882147402322684124}
 --- !u!114 &3882147400859070056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +251,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   NodePauseTime: 1
-  RotatetionSpeed: 2
+  RotationSpeed: 2
 --- !u!195 &3882147400859070058
 NavMeshAgent:
   m_ObjectHideFlags: 0

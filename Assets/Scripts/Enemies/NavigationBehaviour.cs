@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,12 @@ public class NavigationBehaviour : MonoBehaviour
     public Transform[] PatrolNodes;
     public float NodePauseTime = 1.0f;
     private float _NodePatrolTimeout = 0;
-    public float RotatetionSpeed = 2.0f;
+    public float RotationSpeed = 2.0f;
     private int _PatrolNodeIndex = 0;
     private bool _IsPatrolling = false;
     private bool _IsFleeing = false;
     private Vector3 _LastPos;
+    private Vector3 _LastLastPos;
     private Vector3 _PlayerLastPos;
 
     // Start is called before the first frame update
@@ -70,6 +72,11 @@ public class NavigationBehaviour : MonoBehaviour
         return new SequenceNode(new List<Node> { GetAdjustRotation(), shouldGetNextTarget, GetNextTargetNode() });
     }
 
+    public void SetLastPlayerLocation(Vector3 playerPos)
+    {
+        _PlayerLastPos = playerPos;
+    }
+
     public SequenceNode GetFleeSequenceNode()
     {
         Node shouldGetNewFleeNode = new SelectorNode(new List<Node> { new InverterNode(GetIsFleeingNode()), GetIsAtDestNode() });
@@ -103,15 +110,14 @@ public class NavigationBehaviour : MonoBehaviour
             Vector3 curPos = origin.position;
             if (_LastPos == null)
             {
-                _LastPos = possesable.GetGameObject().transform.position;
+                _LastPos = curPos;
             }
-            Vector3 dir = (_LastPos - curPos).normalized * -1;
-
-            // Aim at player
+            Vector3 dir = (_LastLastPos == null ? _LastPos : _LastLastPos - curPos).normalized * -1;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-            origin.rotation = Quaternion.Slerp(origin.rotation, q, Time.deltaTime * RotatetionSpeed);
+            origin.rotation = Quaternion.Slerp(origin.rotation, q, Time.deltaTime * RotationSpeed);
 
+            _LastLastPos = _LastPos;
             _LastPos = curPos;
             return NodeStates.Success;
         });
@@ -160,7 +166,12 @@ public class NavigationBehaviour : MonoBehaviour
             }
             Transform furthest = null;
             float furthestDistance = 0;
-            Vector3 origin = possesable.GetGameObject().transform.position;
+            GameObject player = GameManager.GetInstance().GetPlayer();
+            if (!player)
+            {
+                return NodeStates.Failure;
+            }
+            Vector3 origin = player.transform.position;
             foreach(Transform node in nodesToFleeTo)
             {
                 float pos = Vector3.Distance(origin, node.position);

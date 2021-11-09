@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dc9337df36a8c42a64a1c5556f02f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _AwarenessTimeout: 5
+  _AwarenessTimeout: 10
   _CanSeePlayer: 0
   _AwareOfPlayer: 0
   VisibilityMask:
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 945719307201686553}
   m_Layer: 0
   m_Name: Scientist
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c85bfb87fba2249919addf1d214691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerDetectorBehaviour: {fileID: 6812296350717478861}
 --- !u!114 &6812296352206913912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,9 +411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5bd741b6370264a9bfd74b3bf3f9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PatrolNodes: []
+  PatrolNodes:
+  - {fileID: 0}
+  - {fileID: 0}
   NodePauseTime: 1
-  RotatetionSpeed: 2
+  RotationSpeed: 2
 --- !u!195 &6812296352206913915
 NavMeshAgent:
   m_ObjectHideFlags: 0

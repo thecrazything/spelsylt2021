@@ -8,6 +8,7 @@ TagManager:
   - NavNode
   - Unhittable
   - FleeNode
+  - AI
   layers:
   - Default
   - TransparentFX
