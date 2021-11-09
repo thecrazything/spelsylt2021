@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Projectile
+  - NavNode
+  - Unhittable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Detectors
   - Water
   - UI
   - 

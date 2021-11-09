@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 204488554}
   - component: {fileID: 204488556}
   - component: {fileID: 204488557}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PuppetFinder
-  m_TagString: Untagged
+  m_TagString: Unhittable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 1405406421}
   - component: {fileID: 1405406420}
   - component: {fileID: 1405406423}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerContent
-  m_TagString: Untagged
+  m_TagString: Unhittable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,9 +223,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1811250860}
   - component: {fileID: 1811250861}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TMPForwardMarker
-  m_TagString: Untagged
+  m_TagString: Unhittable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -15,23 +15,23 @@ public class Interactable : MonoBehaviour
 
     public void OnUnfocused()
     {
-        Debug.Log(Name + " lost focus");
+        // Debug.Log(Name + " lost focus");
         r.color = Color.white;
     }
 
     public void OnFocused()
     {
-        Debug.Log(Name + " got focus");
+        // Debug.Log(Name + " got focus");
         r.color = Color.red;
     }
 
     public void Interact()
     {
-        Debug.Log("Interacted with " + transform.name);
+        // Debug.Log("Interacted with " + transform.name);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Interactable triggered");
+        // Debug.Log("Interactable triggered");
     }
 }

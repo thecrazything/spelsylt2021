@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TestAIBehaviour : MonoBehaviour, IAIBehaviour
 {
+    public PlayerDetectorBehaviour PlayerDetectorBehaviour;
     Node _Root;
 
     // Start is called before the first frame update
@@ -11,8 +12,15 @@ public class TestAIBehaviour : MonoBehaviour, IAIBehaviour
     {
         WeaponHandler weaponHandler = GetComponent<WeaponHandler>();
         NavigationBehaviour navigationBehaviour = GetComponent<NavigationBehaviour>();
-        // _Root = new SelectorNode(new List<Node> { weaponHandler.GetAimFireSequenceNode() });
-        _Root = navigationBehaviour.GetPatrolNode();
+
+        Node findAndKill = new SequenceNode(new List<Node> { PlayerDetectorBehaviour.GetCanSeePlayerNode(), navigationBehaviour.GetFollowPlayerNode(), weaponHandler.GetAimFireSequenceNode() });
+
+        Node patrol = navigationBehaviour.GetPatrolNode();
+
+        Node searchForPlayer = new SequenceNode(new List<Node> { PlayerDetectorBehaviour.GetAwareOfPlayerNode(), navigationBehaviour.GetGoToLastPlayerLocationNode(), navigationBehaviour.GetAdjustRotation() });
+
+        // If we can see the player, find and kill, else search for them if we are aware, else patrol
+        _Root = new SelectorNode(new List<Node> { findAndKill, searchForPlayer, patrol });
     }
 
     // Update is called once per frame

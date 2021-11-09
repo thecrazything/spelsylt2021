@@ -26,6 +26,10 @@ public class ProjectileBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "Unhittable")
+        {
+            return;
+        }
         Destroy(gameObject);
     }
 }

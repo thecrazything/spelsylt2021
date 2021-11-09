@@ -10,6 +10,7 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
     public float BulletSpread = 1.0f;
     public float Range = 100f;
     public float FireOffset = 2.0f;
+    public LayerMask VisibilityMask;
     private GameObject _Projectile;
     // Start is called before the first frame update
     void Start()
@@ -31,8 +32,8 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
         GameObject instance = Instantiate(_Projectile);
         instance.transform.position = origin;
         instance.transform.rotation = transform.rotation;
-        RaycastHit2D hit = Physics2D.Raycast(origin, fireDir, Range);
-        // TODO projectile
+        RaycastHit2D hit = Physics2D.Raycast(origin, fireDir, Range, VisibilityMask);
+
         if (hit)
         {
             IDeathHandler deathHandler = hit.collider.gameObject.GetComponent<IDeathHandler>();
