@@ -39,10 +39,6 @@ public class HumanPossesable : MonoBehaviour, IPossesable
             {
                 _WeaponHandler.Fire();
             }
-            else
-            {
-                throw new MissingComponentException("Tried to fire, but there is no weapon handler");
-            }
         }
     }
 

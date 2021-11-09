@@ -13,6 +13,7 @@ public class NavigationBehaviour : MonoBehaviour
     public float RotatetionSpeed = 2.0f;
     private int _PatrolNodeIndex = 0;
     private bool _IsPatrolling = false;
+    private bool _IsFleeing = false;
     private Vector3 _LastPos;
     private Vector3 _PlayerLastPos;
 
@@ -65,7 +66,14 @@ public class NavigationBehaviour : MonoBehaviour
 
     public SequenceNode GetPatrolNode()
     {
-        return new SequenceNode(new List<Node> { GetAdjustRotation(), GetIsAtPatrolDestNode(), GetNextTargetNode() });
+        Node shouldGetNextTarget = new SelectorNode(new List<Node> { new InverterNode(GetIsPatrollingNode()), GetIsAtDestNode() });
+        return new SequenceNode(new List<Node> { GetAdjustRotation(), shouldGetNextTarget, GetNextTargetNode() });
+    }
+
+    public SequenceNode GetFleeSequenceNode()
+    {
+        Node shouldGetNewFleeNode = new SelectorNode(new List<Node> { new InverterNode(GetIsFleeingNode()), GetIsAtDestNode() });
+        return new SequenceNode(new List<Node> { GetAdjustRotation(), shouldGetNewFleeNode, GetFleeNode() });
     }
 
     public ActionNode GetNextTargetNode()
@@ -81,7 +89,7 @@ public class NavigationBehaviour : MonoBehaviour
             {
                 _PatrolNodeIndex = 0;
             }
-            _NavMeshAgent.destination = PatrolNodes[_PatrolNodeIndex].position;
+            _NavMeshAgent.SetDestination(PatrolNodes[_PatrolNodeIndex].position);
             _PatrolNodeIndex++;
             return NodeStates.Success;
         });
@@ -109,14 +117,26 @@ public class NavigationBehaviour : MonoBehaviour
         });
     }
 
-    public ActionNode GetIsAtPatrolDestNode()
+    public ActionNode GetIsPatrollingNode()
     {
         return new ActionNode((possesable) =>
         {
-            if (!_IsPatrolling)
-            {
-                return NodeStates.Success;
-            }
+            return _IsPatrolling ? NodeStates.Success : NodeStates.Failure;
+        });
+    }
+
+    public ActionNode GetIsFleeingNode()
+    {
+        return new ActionNode((possesable) =>
+        {
+            return _IsFleeing ? NodeStates.Success : NodeStates.Failure;
+        });
+    }
+
+    public ActionNode GetIsAtDestNode()
+    {
+        return new ActionNode((possesable) =>
+        {
             if (!_NavMeshAgent.pathPending && 
                 _NavMeshAgent.remainingDistance <= _NavMeshAgent.stoppingDistance && 
                 (!_NavMeshAgent.hasPath || _NavMeshAgent.velocity.sqrMagnitude == 0f))
@@ -124,6 +144,35 @@ public class NavigationBehaviour : MonoBehaviour
                 return NodeStates.Success;
             }
             return NodeStates.Failure;
+        });
+    }
+
+    public ActionNode GetFleeNode()
+    {
+        return new ActionNode((possesable) =>
+        {
+            _IsPatrolling = false;
+            _IsFleeing = true;
+            Transform[] nodesToFleeTo = AIManager.GetInstance().FleeNodes;
+            if (nodesToFleeTo.Length == 0)
+            {
+                return NodeStates.Failure;
+            }
+            Transform furthest = null;
+            float furthestDistance = 0;
+            Vector3 origin = possesable.GetGameObject().transform.position;
+            foreach(Transform node in nodesToFleeTo)
+            {
+                float pos = Vector3.Distance(origin, node.position);
+                if (pos > furthestDistance)
+                {
+                    furthest = node;
+                    furthestDistance = pos;
+                }
+            }
+
+            _NavMeshAgent.SetDestination(furthest.position);
+            return NodeStates.Success;
         });
     }
 }
