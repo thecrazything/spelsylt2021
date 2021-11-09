@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestAIBehaviour : MonoBehaviour, IAIBehaviour
+public class SoliderAIBehaviour : MonoBehaviour, IAIBehaviour
 {
     public PlayerDetectorBehaviour PlayerDetectorBehaviour;
     Node _Root;
