@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileWeapon : MonoBehaviour, IWeapon
 {
-
+    private AudioSource _AudioSource;
     public int Ammo = 10;
     public float FireRate = 1.0f;
     public float BulletSpread = 1.0f;
@@ -16,6 +16,7 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
     void Start()
     {
         _Projectile = Resources.Load("Prefabs/Projectiles/Projectile") as GameObject;
+        _AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
 
     public void Fire()
     {
+        _AudioSource.Play();
         Vector3 fireDir = transform.up;
         Vector3 origin = transform.position;
         origin += fireDir * FireOffset; // Offset so we dont hit ourself
@@ -33,7 +35,6 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
         instance.transform.position = origin;
         instance.transform.rotation = transform.rotation;
         RaycastHit2D hit = Physics2D.Raycast(origin, fireDir, Range, VisibilityMask);
-
         if (hit)
         {
             IDeathHandler deathHandler = hit.collider.gameObject.GetComponent<IDeathHandler>();
