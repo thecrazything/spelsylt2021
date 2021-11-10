@@ -5,12 +5,16 @@ using UnityEngine;
 public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
 {
     private IPossesable _Possesable;
+    public GameObject body;
     public void Hit()
     {
         _Possesable.OnAction(ActionEnum.Puppeteer);
+
+        Instantiate(body, transform.position, transform.rotation);
+
         Destroy(gameObject);
+
         // TODO log enemy death
-        // TODO drop a corpse
     }
 
     // Start is called before the first frame update
