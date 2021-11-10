@@ -41,7 +41,7 @@ public class PlayerDetectorBehaviour : MonoBehaviour
             Vector3 dir = (_Player.transform.position - from).normalized;
             from += dir * 2.0f; // Offset so we dont hit ourself
             RaycastHit2D hit = Physics2D.Raycast(from, dir, 100f, VisibilityMask);
-            _CanSeePlayer =  !hit || hit.collider.gameObject.tag == "Player";
+            _CanSeePlayer =  !hit || IsPlayer(hit.collider);
             if (_CanSeePlayer)
             {
                 AIManager.GetInstance().AlertPlayerLocation(_Player.transform.position);
@@ -72,9 +72,9 @@ public class PlayerDetectorBehaviour : MonoBehaviour
         }
     }
 
-    private bool IsPlayer(Collider2D collider)
+    public static bool IsPlayer(Collider2D collider)
     {
-        return collider.gameObject.tag == "Player";
+        return collider.gameObject.tag == "Player" || collider.gameObject.GetComponentInChildren<PlayerController>();
     }
 
     public ActionNode GetCanSeePlayerNode()

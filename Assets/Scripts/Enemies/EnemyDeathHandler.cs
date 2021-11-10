@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
 {
+    private IPossesable _Possesable;
     public void Hit()
     {
-        Destroy(gameObject); 
+        _Possesable.OnAction(ActionEnum.Puppeteer);
+        Destroy(gameObject);
         // TODO log enemy death
         // TODO drop a corpse
     }
@@ -14,7 +16,7 @@ public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
     // Start is called before the first frame update
     void Start()
     {
-        
+        _Possesable = GetComponent<IPossesable>();
     }
 
     // Update is called once per frame
