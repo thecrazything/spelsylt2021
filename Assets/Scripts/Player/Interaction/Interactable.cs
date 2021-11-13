@@ -2,36 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public interface IInteractable
 {
-    SpriteRenderer r;
-    
-    public string Name = "Interactable";
+    void OnUnfocused();
 
-    void Start()
-    {
-        r = GetComponent<SpriteRenderer>();
-    }
+    void OnFocused();
 
-    public void OnUnfocused()
-    {
-        // Debug.Log(Name + " lost focus");
-        r.color = Color.white;
-    }
+    void Interact(GameObject player);
 
-    public void OnFocused()
-    {
-        // Debug.Log(Name + " got focus");
-        r.color = Color.red;
-    }
-
-    public void Interact()
-    {
-        // Debug.Log("Interacted with " + transform.name);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Debug.Log("Interactable triggered");
-    }
 }

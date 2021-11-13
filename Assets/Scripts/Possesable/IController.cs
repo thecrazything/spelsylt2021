@@ -7,4 +7,5 @@ public interface IController
     public void SetPossessed(IPossesable possesable);
 
     public void ResetPossessed();
+    public void ResetPossessed(Vector3 newPos);
 }
