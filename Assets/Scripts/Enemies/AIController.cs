@@ -72,4 +72,14 @@ public class AIController : MonoBehaviour, IController
         PlayerDetectorBehaviour.SetAlerted();
         _NavBehaviour.SetLastPlayerLocation(playerPos);
     }
+
+    public void ResetPossessed(Vector3 newPos)
+    {
+        ResetPossessed();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

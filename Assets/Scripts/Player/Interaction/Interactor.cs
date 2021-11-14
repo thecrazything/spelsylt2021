@@ -7,16 +7,11 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     Transform focusedTransform = null;
-    Interactable focusedInteractable {
+    IInteractable focusedInteractable {
         get {
             if (focusedTransform == null) return null;
-            return focusedTransform.GetComponent<Interactable>() ?? null;
+            return focusedTransform.GetComponent<IInteractable>() ?? null;
         }
-    }
-
-    void Update()
-    {
-
     }
 
     void OnDestroy()
@@ -48,8 +43,7 @@ public class Interactor : MonoBehaviour
     {
         if (focusedInteractable != null)
         {
-            Interactable interactable = focusedInteractable.GetComponent<Interactable>();
-            interactable.Interact();
+            focusedInteractable.Interact(transform.parent.gameObject);
         } else
         {
             Debug.Log("Nothing to interact with");
@@ -58,7 +52,7 @@ public class Interactor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Interactable interactable = collision.transform.GetComponent<Interactable>();
+        IInteractable interactable = collision.transform.GetComponent<IInteractable>();
         if (interactable != null) {
             SetFocused(collision.transform);
         }

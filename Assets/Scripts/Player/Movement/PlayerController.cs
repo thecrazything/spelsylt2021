@@ -64,4 +64,21 @@ public class PlayerController : MonoBehaviour, IController
             _ActivePossesable?.OnPossess(this);
         }
     }
+
+    public void ResetPossessed(Vector3 newPos)
+    {
+        if (_ActivePossesable != _DefaultPossesable)
+        {
+            transform.position = newPos;
+
+            _ActivePossesable?.OnUnPossess();
+            _ActivePossesable = _DefaultPossesable;
+            _ActivePossesable?.OnPossess(this);
+        }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }
