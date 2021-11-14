@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private readonly string BUTTON_RESTART = "Restart";
     public bool _PlayerIsDead = false;
     private GameObject _Player;
+    private UIHandler _UIHandler;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,11 @@ public class GameManager : MonoBehaviour
         if (!_Player)
         {
             throw new MissingReferenceException("No gameobject named Player");
+        }
+        _UIHandler = GameObject.Find("PlayerUI")?.GetComponent<UIHandler>();
+        if (!_UIHandler)
+        {
+            throw new MissingReferenceException("No gameobject named PlayerUI with a UIHandler component.");
         }
     }
 
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         _PlayerIsDead = true;
+        _UIHandler.ShowRestartMessage();
     }
 
     /// <summary>
