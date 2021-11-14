@@ -10,13 +10,13 @@ public class NavigationBehaviour : MonoBehaviour
     NavMeshAgent _NavMeshAgent;
     public Transform[] PatrolNodes;
     public float NodePauseTime = 1.0f;
+    public float Speed = 1.0f;
+    public float SprintSpeed = .0f;
     private float _NodePatrolTimeout = 0;
     public float RotationSpeed = 2.0f;
     private int _PatrolNodeIndex = 0;
     private bool _IsPatrolling = false;
     private bool _IsFleeing = false;
-    private Vector3 _LastPos;
-    private Vector3 _LastLastPos;
     private Vector3 _PlayerLastPos;
 
     // Start is called before the first frame update
@@ -34,6 +34,10 @@ public class NavigationBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_NavMeshAgent.enabled && _NavMeshAgent.isStopped)
+        {
+            _NodePatrolTimeout += Time.deltaTime;
+        }
     }
 
     public ActionNode GetFollowPlayerNode()
@@ -46,8 +50,11 @@ public class NavigationBehaviour : MonoBehaviour
                 return NodeStates.Failure;
             }
             _IsPatrolling = false;
+            _NavMeshAgent.isStopped = false;
             _NavMeshAgent.SetDestination(player.transform.position);
+            _NodePatrolTimeout = 0;
             _PlayerLastPos = player.transform.position;
+            _NavMeshAgent.speed = SprintSpeed;
             return NodeStates.Success;
         });
     }
@@ -61,7 +68,10 @@ public class NavigationBehaviour : MonoBehaviour
                 return NodeStates.Failure;
             }
             _IsPatrolling = false;
+            _NavMeshAgent.isStopped = false;
+            _NodePatrolTimeout = 0;
             _NavMeshAgent.SetDestination(_PlayerLastPos);
+            _NavMeshAgent.speed = SprintSpeed;
             return NodeStates.Success;
         });
     }
@@ -69,7 +79,7 @@ public class NavigationBehaviour : MonoBehaviour
     public SequenceNode GetPatrolNode()
     {
         Node shouldGetNextTarget = new SelectorNode(new List<Node> { new InverterNode(GetIsPatrollingNode()), GetIsAtDestNode() });
-        return new SequenceNode(new List<Node> { GetAdjustRotation(), shouldGetNextTarget, GetNextTargetNode() });
+        return new SequenceNode(new List<Node> { GetAdjustRotation(), shouldGetNextTarget, GetStopNode(), GetNextTargetNode() });
     }
 
     public void SetLastPlayerLocation(Vector3 playerPos)
@@ -87,6 +97,11 @@ public class NavigationBehaviour : MonoBehaviour
     {
         return new ActionNode((posseable) =>
         {
+            if (_NavMeshAgent.isStopped && _NodePatrolTimeout <= NodePauseTime)
+            {
+                return NodeStates.Failure;
+            }
+            _NodePatrolTimeout = 0;
             if (PatrolNodes == null || PatrolNodes.Length == 0)
             {
                 return NodeStates.Failure;
@@ -96,7 +111,9 @@ public class NavigationBehaviour : MonoBehaviour
             {
                 _PatrolNodeIndex = 0;
             }
+            _NavMeshAgent.isStopped = false;
             _NavMeshAgent.SetDestination(PatrolNodes[_PatrolNodeIndex].position);
+            _NavMeshAgent.speed = Speed;
             _PatrolNodeIndex++;
             return NodeStates.Success;
         });
@@ -106,19 +123,18 @@ public class NavigationBehaviour : MonoBehaviour
     {
         return new ActionNode((possesable) =>
         {
+            if (!_NavMeshAgent.hasPath)
+            {
+                return NodeStates.Success;
+            }
+            Vector3 nextPos = _NavMeshAgent.steeringTarget;
             Transform origin = possesable.GetGameObject().transform;
             Vector3 curPos = origin.position;
-            if (_LastPos == null)
-            {
-                _LastPos = curPos;
-            }
-            Vector3 dir = (_LastLastPos == null ? _LastPos : _LastLastPos - curPos).normalized * -1;
+            Vector3 dir = (nextPos - curPos).normalized;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             origin.rotation = Quaternion.Slerp(origin.rotation, q, Time.deltaTime * RotationSpeed);
-
-            _LastLastPos = _LastPos;
-            _LastPos = curPos;
+           
             return NodeStates.Success;
         });
     }
@@ -128,6 +144,15 @@ public class NavigationBehaviour : MonoBehaviour
         return new ActionNode((possesable) =>
         {
             return _IsPatrolling ? NodeStates.Success : NodeStates.Failure;
+        });
+    }
+
+    public ActionNode GetStopNode()
+    {
+        return new ActionNode((possesable) =>
+        {
+            _NavMeshAgent.isStopped = true;
+            return NodeStates.Success;
         });
     }
 
@@ -157,6 +182,8 @@ public class NavigationBehaviour : MonoBehaviour
     {
         return new ActionNode((possesable) =>
         {
+            _NodePatrolTimeout = 0;
+            _NavMeshAgent.isStopped = false;
             _IsPatrolling = false;
             _IsFleeing = true;
             Transform[] nodesToFleeTo = AIManager.GetInstance().FleeNodes;
@@ -182,7 +209,9 @@ public class NavigationBehaviour : MonoBehaviour
                 }
             }
 
+            _NavMeshAgent.isStopped = false;
             _NavMeshAgent.SetDestination(furthest.position);
+            _NavMeshAgent.speed = SprintSpeed;
             return NodeStates.Success;
         });
     }

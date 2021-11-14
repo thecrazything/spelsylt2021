@@ -4554,6 +4554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb40c084ec3d2245b3f15fc5f88b9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  r: {fileID: 0}
   Name: Interactable
 --- !u!61 &1719288336
 BoxCollider2D:

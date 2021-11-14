@@ -252,6 +252,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   NodePauseTime: 1
+  Speed: 1
+  SprintSpeed: 3
   RotationSpeed: 2
 --- !u!195 &3882147400859070058
 NavMeshAgent:
@@ -287,7 +289,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5a2289e3358b5ac4cb5388e77e14a369, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

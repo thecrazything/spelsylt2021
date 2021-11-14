@@ -331,6 +331,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   NodePauseTime: 1
+  Speed: 1
+  SprintSpeed: 3
   RotationSpeed: 2
 --- !u!195 &6812296352206913915
 NavMeshAgent:
