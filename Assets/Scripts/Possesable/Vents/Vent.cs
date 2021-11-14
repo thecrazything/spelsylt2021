@@ -47,6 +47,8 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
 
         SpriteRenderer r = GetComponent<SpriteRenderer>();
         r.color = Color.green;
+
+        _Controller.GetGameObject().transform.position = transform.position;
     }
 
     public void OnUnPossess()

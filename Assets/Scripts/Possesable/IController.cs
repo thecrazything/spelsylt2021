@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IController
 {
+    public GameObject GetGameObject();
     public void SetPossessed(IPossesable possesable);
 
     public void ResetPossessed();

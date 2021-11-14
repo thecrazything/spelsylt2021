@@ -77,4 +77,9 @@ public class AIController : MonoBehaviour, IController
     {
         ResetPossessed();
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }
