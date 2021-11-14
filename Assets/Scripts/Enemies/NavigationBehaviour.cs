@@ -97,7 +97,6 @@ public class NavigationBehaviour : MonoBehaviour
     {
         return new ActionNode((posseable) =>
         {
-            print("Get next target");
             if (_NavMeshAgent.isStopped && _NodePatrolTimeout <= NodePauseTime)
             {
                 return NodeStates.Failure;
@@ -210,8 +209,6 @@ public class NavigationBehaviour : MonoBehaviour
                     furthestDistance = pos;
                 }
             }
-            print("set flee dest");
-            print(furthest.position);
             _NavMeshAgent.isStopped = false;
             _NavMeshAgent.SetDestination(furthest.position);
             _NavMeshAgent.speed = SprintSpeed;
