@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         {
             throw new MissingReferenceException("No gameobject named PlayerUI with a UIHandler component.");
         }
+        MusicManager.GetInstance()?.PlayMusic();
     }
 
     // Update is called once per frame
