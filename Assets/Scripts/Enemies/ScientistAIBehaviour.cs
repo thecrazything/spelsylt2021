@@ -17,8 +17,9 @@ public class ScientistAIBehaviour : MonoBehaviour, IAIBehaviour
         NavigationBehaviour navigationBehaviour = GetComponent<NavigationBehaviour>();
 
         Node patrol = new SequenceNode( new List<Node> { new InverterNode(PlayerDetectorBehaviour.GetAwareOfPlayerNode()), navigationBehaviour.GetPatrolNode() });
+        Node flee = new SequenceNode( new List<Node> { PlayerDetectorBehaviour.GetAwareOfPlayerNode(), navigationBehaviour.GetFleeSequenceNode() });
 
-        _Root = new SelectorNode(new List<Node> {  patrol, navigationBehaviour.GetFleeSequenceNode() });
+        _Root = new SelectorNode(new List<Node> {  flee, patrol });
     }
 
     // Update is called once per frame
