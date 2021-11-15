@@ -12,13 +12,9 @@ public class AIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject[] ais = GameObject.FindGameObjectsWithTag("AI");
-        _AIs = new AIController[ais.Length];
-        var index = 0;
-        foreach (GameObject ai in ais)
+        if (_AIs == null)
         {
-            _AIs[index] = ai.GetComponent<AIController>();
-            index++;
+            LoadAllAI();
         }
     }
 
@@ -34,6 +30,7 @@ public class AIManager : MonoBehaviour
         {
             controller?.SetAlerted(position);
         }
+        GameManager.GetInstance().OnPlayerSeen();
     }
 
     public static AIManager GetInstance()
@@ -51,6 +48,22 @@ public class AIManager : MonoBehaviour
 
     public AIController[] GetAIs()
     {
+        if (_AIs == null)
+        {
+            LoadAllAI();
+        }
         return _AIs;
+    }
+
+    private void LoadAllAI()
+    {
+        GameObject[] ais = GameObject.FindGameObjectsWithTag("AI");
+        _AIs = new AIController[ais.Length];
+        var index = 0;
+        foreach (GameObject ai in ais)
+        {
+            _AIs[index] = ai.GetComponent<AIController>();
+            index++;
+        }
     }
 }

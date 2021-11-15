@@ -14,7 +14,7 @@ public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
 
         Destroy(gameObject);
 
-        // TODO log enemy death
+        GameManager.GetInstance().OnEnemyDeath();
     }
 
     // Start is called before the first frame update

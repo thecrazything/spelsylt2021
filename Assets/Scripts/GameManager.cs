@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public bool _PlayerIsDead = false;
     private GameObject _Player;
     private UIHandler _UIHandler;
+    private int _TotalEnemyCount;
+    private int _TotalEnemiesKilledCount = 0;
+    private int _TimesPlayerWasDetected = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,7 @@ public class GameManager : MonoBehaviour
             throw new MissingReferenceException("No gameobject named PlayerUI with a UIHandler component.");
         }
         MusicManager.GetInstance()?.PlayMusic();
+        _TotalEnemyCount = AIManager.GetInstance().GetAIs().Length;
     }
 
     // Update is called once per frame
@@ -44,6 +49,20 @@ public class GameManager : MonoBehaviour
     {
         _PlayerIsDead = true;
         _UIHandler.ShowRestartMessage();
+    }
+
+    public void OnEnemyDeath()
+    {
+        _TotalEnemiesKilledCount += 1;
+        if (_TotalEnemiesKilledCount >= _TotalEnemyCount)
+        {
+            Debug.Log("All enemies killed!");
+        }
+    }
+
+    public void OnPlayerSeen()
+    {
+        _TimesPlayerWasDetected += 1; // For fun statistics
     }
 
     /// <summary>

@@ -44,7 +44,10 @@ public class PlayerDetectorBehaviour : MonoBehaviour
             _CanSeePlayer =  !hit || IsPlayer(hit.collider);
             if (_CanSeePlayer)
             {
-                AIManager.GetInstance().AlertPlayerLocation(_Player.transform.position);
+                if (!_AwareOfPlayer)
+                {
+                    AIManager.GetInstance().AlertPlayerLocation(_Player.transform.position);
+                }
                 _AwareOfPlayer = true;
             }
             else
