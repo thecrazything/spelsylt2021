@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a18cf63fa530d5438c33f13ea56afb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AudioSource: {fileID: 1173876550}
   Ammo: 10
   FireRate: 0.5
   BulletSpread: 1

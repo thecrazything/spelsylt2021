@@ -9,6 +9,9 @@ public class Puppeteering : MonoBehaviour
     private GameObject _Target;
     private float _PuppetMaxtime = 10f; // TODO adjust to reasonable length
     private float _PuppetTimer = 0f;
+    private AudioSource _AudioSource;
+    private AudioClip[] _DropSounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,13 @@ public class Puppeteering : MonoBehaviour
         {
             throw new MissingComponentException("Missing PlayerController");
         }
+        _AudioSource = gameObject.AddComponent<AudioSource>();
+        _AudioSource.volume = 0.5f;
+        _AudioSource.playOnAwake = false;
+        _DropSounds = new AudioClip[3];
+        _DropSounds[0] = Resources.Load<AudioClip>("Sounds/Player/drop_puppet_1");
+        _DropSounds[1] = Resources.Load<AudioClip>("Sounds/Player/drop_puppet_2");
+        _DropSounds[2] = Resources.Load<AudioClip>("Sounds/Player/drop_puppet_3");
     }
 
     // Update is called once per frame
@@ -53,6 +63,7 @@ public class Puppeteering : MonoBehaviour
         {
             return;
         }
+        puppet.OnMakePuppet();
         puppet.GetController().ResetPossessed();
         _PlayerController.SetPossessed(puppet.GetPossesable());
         _CurrentPuppet = puppet;
@@ -70,6 +81,7 @@ public class Puppeteering : MonoBehaviour
             IDeathHandler deathHandler = _CurrentPuppet?.gameObject?.GetComponent<IDeathHandler>();
             deathHandler?.Hit();
             _CurrentPuppet = null;
+            _AudioSource.PlayOneShot(_DropSounds[Random.Range(0, 2)]);
         }
     }
 
