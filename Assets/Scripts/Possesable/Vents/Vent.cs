@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Vent : MonoBehaviour, IPossesable, IInteractable
 {
+    public Light2D _Light;
     public Transform SpawnLocation;
     public GameObject VentSystem;
     VentSystem ventSystem;
     private IController _Controller;
+    private Color _OGColor;
 
     void Start()
     {
         ventSystem = VentSystem.GetComponent<VentSystem>();
         ventSystem.Register(this);
+        if (_Light)
+        {
+            _OGColor = _Light.color;
+        }
     }
 
     public GameObject GetGameObject()
@@ -47,6 +54,10 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
 
         SpriteRenderer r = GetComponent<SpriteRenderer>();
         r.color = Color.green;
+        if (_Light)
+        {
+            _Light.color = Color.green;
+        }
 
         _Controller.GetGameObject().transform.position = transform.position;
     }
@@ -57,6 +68,10 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
 
         SpriteRenderer r = GetComponent<SpriteRenderer>();
         r.color = Color.white;
+        if (_Light)
+        {
+            _Light.color = _OGColor;
+        }
     }
 
     private void CycleVent()
