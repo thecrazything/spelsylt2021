@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class UIHandler : MonoBehaviour
 {
     public GameObject RestartPanel;
+    public GameObject EndPanel;
+    public Text EnemiesKilled;
+    public Text TimesDetected;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +24,12 @@ public class UIHandler : MonoBehaviour
     public void ShowRestartMessage()
     {
         RestartPanel.SetActive(true);
+    }
+
+    public void ShowEndMenu(int enemiesKilled, int totalEnemies, int timesDetected)
+    {
+        EndPanel.SetActive(true);
+        EnemiesKilled.text = enemiesKilled.ToString() + "/" + totalEnemies.ToString();
+        TimesDetected.text = timesDetected.ToString();
     }
 }

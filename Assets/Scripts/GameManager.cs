@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour
     private static GameManager _Instance;
     private readonly string BUTTON_RESTART = "Restart";
     public bool _PlayerIsDead = false;
+    public int NextMapIndex = 0;
+    public string MapSong = "";
     private GameObject _Player;
     private UIHandler _UIHandler;
     private int _TotalEnemyCount;
     private int _TotalEnemiesKilledCount = 0;
     private int _TimesPlayerWasDetected = 0;
+    public bool IsGameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,8 @@ public class GameManager : MonoBehaviour
         {
             throw new MissingReferenceException("No gameobject named PlayerUI with a UIHandler component.");
         }
-        MusicManager.GetInstance()?.PlayMusic();
+        AudioClip mapSong = Resources.Load<AudioClip>("Sounds/Music/" + MapSong);
+        MusicManager.GetInstance()?.PlayMusic(mapSong);
         _TotalEnemyCount = AIManager.GetInstance().GetAIs().Length;
     }
 
@@ -43,6 +47,13 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(scene.name);
             }
         }
+        if (IsGameOver)
+        {
+            if (Input.GetButtonDown(BUTTON_RESTART))
+            {
+                SceneManager.LoadScene(NextMapIndex);
+            }
+        }
     }
 
     public void OnPlayerDeath()
@@ -51,13 +62,18 @@ public class GameManager : MonoBehaviour
         _UIHandler.ShowRestartMessage();
     }
 
+    /// <summary>
+    /// Call this to end the game
+    /// </summary>
+    public void OnGameEnd()
+    {
+        _UIHandler.ShowEndMenu(_TotalEnemiesKilledCount, _TotalEnemyCount, _TimesPlayerWasDetected);
+        IsGameOver = true;
+    }
+
     public void OnEnemyDeath()
     {
         _TotalEnemiesKilledCount += 1;
-        if (_TotalEnemiesKilledCount >= _TotalEnemyCount)
-        {
-            Debug.Log("All enemies killed!");
-        }
     }
 
     public void OnPlayerSeen()

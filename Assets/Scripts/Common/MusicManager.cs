@@ -32,10 +32,11 @@ public class MusicManager : MonoBehaviour
         _AudioSource.Stop();
     }
 
-    public void PlayMusic()
+    public void PlayMusic(AudioClip mapSong)
     {
-        if (!_AudioSource.isPlaying)
+        if (_AudioSource.clip != mapSong || !_AudioSource.isPlaying)
         {
+            _AudioSource.clip = mapSong;
             _AudioSource.Play();
         }
     }

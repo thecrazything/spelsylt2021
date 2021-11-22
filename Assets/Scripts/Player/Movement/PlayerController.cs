@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.GetInstance().IsGameOver)
+        {
+            return;
+        }
         float x = Input.GetAxis(AXIS_HORIZONTAL);
         float y = Input.GetAxis(AXIS_VERTICAL);
         // Normalize mouse relative to screen center

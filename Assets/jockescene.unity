@@ -153,6 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PlayerIsDead: 0
+  NextMapIndex: 0
+  MapSong: secret_invasion
+  IsGameOver: 0
 --- !u!4 &33247071
 Transform:
   m_ObjectHideFlags: 0
@@ -425,8 +428,8 @@ Camera:
   m_GameObject: {fileID: 560378108}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5885,10 +5888,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1554948994957628794, guid: eedcb9d027796e643967070fcdf38530, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1bb2876ce948ba0479e56274c235d505, type: 3}
     - target: {fileID: 1595163654627848107, guid: eedcb9d027796e643967070fcdf38530, type: 3}
       propertyPath: m_Name
       value: MusicManager
