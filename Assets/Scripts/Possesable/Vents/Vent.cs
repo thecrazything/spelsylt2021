@@ -34,11 +34,11 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
 
     public void OnAction(ActionEnum action)
     {
-        if (action == ActionEnum.Puppeteer)
+        if (action == ActionEnum.Interact)
         {
             _Controller?.ResetPossessed(transform.position);
         }
-        else if (action == ActionEnum.Interact)
+        else if (action == ActionEnum.Iterate)
         {
             CycleVent();
         }

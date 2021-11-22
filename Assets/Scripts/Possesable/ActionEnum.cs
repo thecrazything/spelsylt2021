@@ -6,5 +6,6 @@ public enum ActionEnum
 {
     Interact,
     Puppeteer,
-    FireWeapon
+    FireWeapon,
+    Iterate
 }
