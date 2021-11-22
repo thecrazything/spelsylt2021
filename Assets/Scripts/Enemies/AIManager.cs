@@ -8,6 +8,7 @@ public class AIManager : MonoBehaviour
     public Transform[] FleeNodes;
 
     private AIController[] _AIs;
+    private AIController[] _ScientistAI;
 
     // Start is called before the first frame update
     void Start()
@@ -55,15 +56,31 @@ public class AIManager : MonoBehaviour
         return _AIs;
     }
 
+    public AIController[] GetScientistsAI()
+    {
+        if (_ScientistAI == null)
+        {
+            LoadAllAI();
+        }
+        return _ScientistAI;
+    }
+
     private void LoadAllAI()
     {
         GameObject[] ais = GameObject.FindGameObjectsWithTag("AI");
         _AIs = new AIController[ais.Length];
         var index = 0;
+        List<AIController> sciAi = new List<AIController>();
         foreach (GameObject ai in ais)
         {
             _AIs[index] = ai.GetComponent<AIController>();
+            ScientistAIBehaviour scientist = ai.GetComponent<ScientistAIBehaviour>();
+            if (scientist)
+            {
+                sciAi.Add(_AIs[index]);
+            }
             index++;
         }
+        _ScientistAI = sciAi.ToArray();
     }
 }

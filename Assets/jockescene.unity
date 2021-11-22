@@ -156,6 +156,7 @@ MonoBehaviour:
   NextMapIndex: 0
   MapSong: secret_invasion
   IsGameOver: 0
+  _TotalScientists: 0
 --- !u!4 &33247071
 Transform:
   m_ObjectHideFlags: 0

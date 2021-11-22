@@ -6,6 +6,7 @@ public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
 {
     private IPossesable _Possesable;
     public GameObject body;
+    public bool isScientist = false;
     public void Hit()
     {
         _Possesable.OnAction(ActionEnum.Puppeteer);
@@ -14,7 +15,7 @@ public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
 
         Destroy(gameObject);
 
-        GameManager.GetInstance().OnEnemyDeath();
+        GameManager.GetInstance().OnEnemyDeath(isScientist);
     }
 
     // Start is called before the first frame update

@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 2476766689295595152, guid: 25ae1b918983fdd4da8018e0849f79cd, type: 3}
+  isScientist: 1
 --- !u!114 &6812296352206913894
 MonoBehaviour:
   m_ObjectHideFlags: 0

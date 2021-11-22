@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private int _TotalEnemiesKilledCount = 0;
     private int _TimesPlayerWasDetected = 0;
     public bool IsGameOver = false;
+    public int _TotalScientists = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         AudioClip mapSong = Resources.Load<AudioClip>("Sounds/Music/" + MapSong);
         MusicManager.GetInstance()?.PlayMusic(mapSong);
         _TotalEnemyCount = AIManager.GetInstance().GetAIs().Length;
+        _TotalScientists = AIManager.GetInstance().GetScientistsAI().Length;
     }
 
     // Update is called once per frame
@@ -71,9 +73,17 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
     }
 
-    public void OnEnemyDeath()
+    public void OnEnemyDeath(bool isScientist)
     {
         _TotalEnemiesKilledCount += 1;
+        if (isScientist)
+        {
+            _TotalScientists -= 1;
+            if (_TotalScientists <= 0)
+            {
+                OnPlayerDeath(); // TODO probably tell the player why they lost.
+            }
+        }
     }
 
     public void OnPlayerSeen()

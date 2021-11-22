@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour, IController
             {
                 _ActivePossesable.OnAction(ActionEnum.FireWeapon);
             }
-            if (Input.GetButton(BUTTON_CHANGE_VENT))
+            if (Input.GetButtonUp(BUTTON_CHANGE_VENT))
             {
                 _ActivePossesable.OnAction(ActionEnum.Iterate);
             }
