@@ -8,8 +8,8 @@ public class MainMenuBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MusicManager.GetInstance().StopMusic();
-        // TODO start main menu music
+        AudioClip mapSong = Resources.Load<AudioClip>("Sounds/Music/main_menu");
+        MusicManager.GetInstance()?.PlayMusic(mapSong);
     }
 
     // Update is called once per frame
