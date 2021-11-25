@@ -90,4 +90,9 @@ public class PlayerController : MonoBehaviour, IController
     {
         return gameObject;
     }
+
+    public IPossesable GetCurrentPossesable()
+    {
+        return _ActivePossesable;
+    }
 }

@@ -52,6 +52,7 @@ public class Interactor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collided with " + collision);
         IInteractable interactable = collision.transform.GetComponent<IInteractable>();
         if (interactable != null) {
             SetFocused(collision.transform);

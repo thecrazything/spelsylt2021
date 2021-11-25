@@ -8,8 +8,12 @@ public class HumanPossesable : MonoBehaviour, IPossesable
     private IController _Controller;
     private WeaponHandler _WeaponHandler;
 
+    public GameObject InteractorObject;
+    private Interactor _Interactor;
+
     public void Start()
     {
+        _Interactor = InteractorObject.GetComponent<Interactor>();
         _WeaponHandler = GetComponent<WeaponHandler>();
     }
 
@@ -39,6 +43,9 @@ public class HumanPossesable : MonoBehaviour, IPossesable
             {
                 _WeaponHandler.Fire();
             }
+        } else if (action == ActionEnum.Interact)
+        {
+            _Interactor.Interact();
         }
     }
 

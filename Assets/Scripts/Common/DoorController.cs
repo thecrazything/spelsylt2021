@@ -8,7 +8,10 @@ public class DoorController : MonoBehaviour, IInteractable
 
     public void Interact(GameObject player)
     {
-        Door.SetActive(false);
+        Debug.Log("Interact");
+        if (player.name == "Scientist") {
+            Door.SetActive(false);
+        }
     }
 
     public void OnFocused()
