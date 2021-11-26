@@ -5,10 +5,14 @@ using UnityEngine;
 public class DoorController : MonoBehaviour, IInteractable
 {
     public GameObject Door;
+    public bool isOpen {
+        get {
+            return !Door.activeSelf;
+        }
+    }
 
     public void Interact(GameObject player)
     {
-        Debug.Log("Interact");
         if (player.name == "Scientist") {
             Door.SetActive(false);
         }

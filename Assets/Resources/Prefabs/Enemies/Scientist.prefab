@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  InteractorObject: {fileID: 0}
 --- !u!212 &6812296352206913890
 SpriteRenderer:
   m_ObjectHideFlags: 0

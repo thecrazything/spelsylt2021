@@ -9,6 +9,8 @@ public class UIHandler : MonoBehaviour
     public GameObject EndPanel;
     public Text EnemiesKilled;
     public Text TimesDetected;
+    public Text LossReason;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +33,10 @@ public class UIHandler : MonoBehaviour
         EndPanel.SetActive(true);
         EnemiesKilled.text = enemiesKilled.ToString() + "/" + totalEnemies.ToString();
         TimesDetected.text = timesDetected.ToString();
+    }
+
+    public void SetLossMessage(string text)
+    {
+        LossReason.text = text;
     }
 }

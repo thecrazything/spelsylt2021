@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour, IController
         {
             return;
         }
+
         float x = Input.GetAxis(AXIS_HORIZONTAL);
         float y = Input.GetAxis(AXIS_VERTICAL);
+
         // Normalize mouse relative to screen center
         Vector2 mousePos = new Vector2(Input.mousePosition.x - Screen.width / 2, Input.mousePosition.y - Screen.height / 2);
         float mouseX = mousePos.x;
