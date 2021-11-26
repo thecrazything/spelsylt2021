@@ -9,6 +9,7 @@ TagManager:
   - Unhittable
   - FleeNode
   - AI
+  - Scientist
   layers:
   - Default
   - TransparentFX
