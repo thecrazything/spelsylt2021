@@ -8,18 +8,24 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     public Light2D _Light;
     public Transform SpawnLocation;
     public GameObject VentSystem;
-    VentSystem ventSystem;
+    private VentSystem ventSystem;
     private IController _Controller;
     private Color _OGColor;
+    public Color SelectedColor;
+    private SpriteRenderer _Rendered;
 
     void Start()
     {
-        ventSystem = VentSystem.GetComponent<VentSystem>();
-        ventSystem.Register(this);
+        _Rendered = GetComponent<SpriteRenderer>();
         if (_Light)
         {
             _OGColor = _Light.color;
         }
+    }
+
+    public void RegisterVentSystem(VentSystem system)
+    {
+        ventSystem = system;
     }
 
     public GameObject GetGameObject()
@@ -51,12 +57,9 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     public void OnPossess(IController controller)
     {
         _Controller = controller;
-
-        SpriteRenderer r = GetComponent<SpriteRenderer>();
-        r.color = Color.green;
         if (_Light)
         {
-            _Light.color = Color.green;
+            _Light.color = SelectedColor;
         }
 
         _Controller.GetGameObject().transform.position = transform.position;
@@ -65,9 +68,6 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     public void OnUnPossess()
     {
         _Controller = null;
-
-        SpriteRenderer r = GetComponent<SpriteRenderer>();
-        r.color = Color.white;
         if (_Light)
         {
             _Light.color = _OGColor;
@@ -82,14 +82,12 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
 
     public void OnUnfocused()
     {
-        SpriteRenderer r = GetComponent<SpriteRenderer>();
-        r.color = Color.white;
+        _Rendered.color = Color.white;
     }
 
     public void OnFocused()
     {
-        SpriteRenderer r = GetComponent<SpriteRenderer>();
-        r.color = Color.red;
+        _Rendered.color = Color.red;
     }
 
     public void Interact(GameObject player)
