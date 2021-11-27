@@ -13,7 +13,10 @@ public class HumanPossesable : MonoBehaviour, IPossesable
 
     public void Start()
     {
-        _Interactor = InteractorObject.GetComponent<Interactor>();
+        if (InteractorObject)
+        {
+            _Interactor = InteractorObject.GetComponent<Interactor>();
+        }
         _WeaponHandler = GetComponent<WeaponHandler>();
     }
 
@@ -45,7 +48,7 @@ public class HumanPossesable : MonoBehaviour, IPossesable
             }
         } else if (action == ActionEnum.Interact)
         {
-            _Interactor.Interact();
+            _Interactor?.Interact();
         }
     }
 
