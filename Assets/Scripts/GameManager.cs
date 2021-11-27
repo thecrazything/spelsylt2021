@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver = false;
     private bool _IsGameWon = false;
     public int _TotalScientists = 0;
+    public bool KillEmAllMode = false;
 
     private List<DoorController> _DoorsToExit = new List<DoorController>();
 
@@ -87,6 +88,10 @@ public class GameManager : MonoBehaviour
     {
         _TotalEnemiesKilledCount += 1;
         CheckIfLost();
+        if (KillEmAllMode && _TotalEnemiesKilledCount >= _TotalEnemyCount)
+        {
+            OnGameEnd();
+        }
     }
 
     public void OnPlayerSeen()
@@ -124,11 +129,15 @@ public class GameManager : MonoBehaviour
         // OR the player is dead
         int scientistsLeft = GameObject.FindGameObjectsWithTag("Scientist").Length;
 
-        if (scientistsLeft == 0 && !IsDoorsOpen()) {
-            HandlePlayerLost("Locked in");
-            _PlayerIsDead = true;
-            IsGameOver = true;
-            return;
+        if (!KillEmAllMode)
+        {
+            if (scientistsLeft == 0 && !IsDoorsOpen())
+            {
+                HandlePlayerLost("Locked in");
+                _PlayerIsDead = true;
+                IsGameOver = true;
+                return;
+            }
         }
 
         if (_PlayerIsDead) {
