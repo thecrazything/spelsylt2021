@@ -10,6 +10,7 @@ TagManager:
   - FleeNode
   - AI
   - Scientist
+  - ExitDoor
   layers:
   - Default
   - TransparentFX

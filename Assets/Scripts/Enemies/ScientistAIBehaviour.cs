@@ -14,10 +14,15 @@ public class ScientistAIBehaviour : MonoBehaviour, IAIBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Node interact = new ActionNode(possesable =>
+        {
+            possesable.OnAction(ActionEnum.Interact);
+            return NodeStates.Success;
+        });
         NavigationBehaviour navigationBehaviour = GetComponent<NavigationBehaviour>();
 
         Node patrol = new SequenceNode( new List<Node> { new InverterNode(PlayerDetectorBehaviour.GetAwareOfPlayerNode()), navigationBehaviour.GetPatrolNode() });
-        Node flee = new SequenceNode( new List<Node> { PlayerDetectorBehaviour.GetAwareOfPlayerNode(), navigationBehaviour.GetFleeSequenceNode() });
+        Node flee = new SequenceNode( new List<Node> { PlayerDetectorBehaviour.GetAwareOfPlayerNode(), interact, navigationBehaviour.GetFleeSequenceNode() });
 
         _Root = new SelectorNode(new List<Node> {  flee, patrol });
     }

@@ -96,7 +96,10 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     public void Interact(GameObject player)
     {
         PlayerController pController = player.GetComponent<PlayerController>();
-        ExitSound.Play();
-        pController.SetPossessed(this);
+        if (pController)
+        {
+            ExitSound.Play();
+            pController.SetPossessed(this);
+        }
     }
 }

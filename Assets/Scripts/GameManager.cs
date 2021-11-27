@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour
     private int _TotalEnemiesKilledCount = 0;
     private int _TimesPlayerWasDetected = 0;
     public bool IsGameOver = false;
+    private bool _IsGameWon = false;
     public int _TotalScientists = 0;
 
-    public GameObject ExitDoorObject;
-    private DoorController _ExitDoor;
+    private List<DoorController> _DoorsToExit = new List<DoorController>();
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,11 @@ public class GameManager : MonoBehaviour
         _TotalEnemyCount = AIManager.GetInstance().GetAIs().Length;
         _TotalScientists = AIManager.GetInstance().GetScientistsAI().Length;
 
-        _ExitDoor = ExitDoorObject.GetComponent<DoorController>();
+        var exitDoors = GameObject.FindGameObjectsWithTag("ExitDoor");
+        foreach(GameObject door in exitDoors)
+        {
+            _DoorsToExit.Add(door.GetComponent<DoorController>());
+        }
     }
 
     // Update is called once per frame
@@ -54,7 +58,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(scene.name);
             }
         }
-        if (IsGameOver)
+        if (_IsGameWon)
         {
             if (Input.GetButtonDown(BUTTON_RESTART))
             {
@@ -76,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         _UIHandler.ShowEndMenu(_TotalEnemiesKilledCount, _TotalEnemyCount, _TimesPlayerWasDetected);
         IsGameOver = true;
+        _IsGameWon = true;
     }
 
     public void OnEnemyDeath(bool isScientist)
@@ -119,17 +124,23 @@ public class GameManager : MonoBehaviour
         // OR the player is dead
         int scientistsLeft = GameObject.FindGameObjectsWithTag("Scientist").Length;
 
-        if (scientistsLeft == 0 && !_ExitDoor.isOpen) {
+        if (scientistsLeft == 0 && !IsDoorsOpen()) {
             HandlePlayerLost("Locked in");
             _PlayerIsDead = true;
+            IsGameOver = true;
             return;
         }
 
         if (_PlayerIsDead) {
             HandlePlayerLost("You died");
-            _PlayerIsDead = true;
+            IsGameOver = true;
             return;
         }
+    }
+
+    bool IsDoorsOpen()
+    {
+        return _DoorsToExit.FindAll(x => x.isOpen).Count == _DoorsToExit.Count;
     }
 
     void HandlePlayerLost(string msg = "No reason specified, just git gud")
