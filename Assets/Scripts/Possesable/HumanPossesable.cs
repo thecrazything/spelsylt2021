@@ -29,7 +29,7 @@ public class HumanPossesable : MonoBehaviour, IPossesable
 
     public void OnLook(Vector2 dir)
     {
-        transform.up = new Vector3(dir.x, dir.y, 0) - transform.position;
+        transform.up = new Vector3(dir.x, dir.y, 0) - new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     public void OnAction(ActionEnum action)

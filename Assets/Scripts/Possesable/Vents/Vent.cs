@@ -13,6 +13,8 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     private Color _OGColor;
     public Color SelectedColor;
     private SpriteRenderer _Rendered;
+    public AudioSource EnterSound;
+    public AudioSource ExitSound;
 
     void Start()
     {
@@ -42,6 +44,7 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     {
         if (action == ActionEnum.Interact)
         {
+            EnterSound.Play();
             _Controller?.ResetPossessed(transform.position);
         }
         else if (action == ActionEnum.Iterate)
@@ -93,6 +96,7 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
     public void Interact(GameObject player)
     {
         PlayerController pController = player.GetComponent<PlayerController>();
+        ExitSound.Play();
         pController.SetPossessed(this);
     }
 }
