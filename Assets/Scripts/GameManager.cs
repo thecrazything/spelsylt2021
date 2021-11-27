@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver = false;
     public int _TotalScientists = 0;
 
+    public GameObject ExitDoorObject;
+    private DoorController _ExitDoor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,8 @@ public class GameManager : MonoBehaviour
         MusicManager.GetInstance()?.PlayMusic(mapSong);
         _TotalEnemyCount = AIManager.GetInstance().GetAIs().Length;
         _TotalScientists = AIManager.GetInstance().GetScientistsAI().Length;
+
+        _ExitDoor = ExitDoorObject.GetComponent<DoorController>();
     }
 
     // Update is called once per frame
@@ -61,7 +66,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         _PlayerIsDead = true;
-        _UIHandler.ShowRestartMessage();
+        CheckIfLost();
     }
 
     /// <summary>
@@ -76,14 +81,7 @@ public class GameManager : MonoBehaviour
     public void OnEnemyDeath(bool isScientist)
     {
         _TotalEnemiesKilledCount += 1;
-        if (isScientist)
-        {
-            _TotalScientists -= 1;
-            if (_TotalScientists <= 0)
-            {
-                OnPlayerDeath(); // TODO probably tell the player why they lost.
-            }
-        }
+        CheckIfLost();
     }
 
     public void OnPlayerSeen()
@@ -112,5 +110,31 @@ public class GameManager : MonoBehaviour
             throw new MissingReferenceException("No GameManager found");
         }
         return _Instance;
+    }
+
+    void CheckIfLost()
+    {
+        // If number of scientist = 0
+        // and the exit door has not been opened
+        // OR the player is dead
+        int scientistsLeft = GameObject.FindGameObjectsWithTag("Scientist").Length;
+
+        if (scientistsLeft == 0 && !_ExitDoor.isOpen) {
+            HandlePlayerLost("Locked in");
+            _PlayerIsDead = true;
+            return;
+        }
+
+        if (_PlayerIsDead) {
+            HandlePlayerLost("You died");
+            _PlayerIsDead = true;
+            return;
+        }
+    }
+
+    void HandlePlayerLost(string msg = "No reason specified, just git gud")
+    {
+        _UIHandler.SetLossMessage("Lost reason: " + msg);
+        _UIHandler.ShowRestartMessage();
     }
 }
