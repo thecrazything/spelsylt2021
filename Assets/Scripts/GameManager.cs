@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
     void HandlePlayerLost(string msg = "No reason specified, just git gud")
     {
-        _UIHandler.SetLossMessage("Lost reason: " + msg);
+        _UIHandler.SetLossMessage(msg);
         _UIHandler.ShowRestartMessage();
     }
 }
