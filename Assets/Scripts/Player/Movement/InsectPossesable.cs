@@ -20,12 +20,6 @@ public class InsectPossesable : MonoBehaviour, IPossesable
         _Collider = GetComponent<CapsuleCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnMove(float x, float y)
     {
         Vector2 movement = new Vector2(x, y);
