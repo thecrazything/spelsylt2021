@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _Instance;
     private readonly string BUTTON_RESTART = "Restart";
+    private readonly string BUTTON_NEXT = "Next";
     public bool _PlayerIsDead = false;
     public int NextMapIndex = 0;
     public string MapSong = "";
@@ -50,18 +51,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown(BUTTON_RESTART))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
         if (_PlayerIsDead)
         {
             _Player = null;
-            if (Input.GetButtonDown(BUTTON_RESTART))
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-            }
         }
         if (_IsGameWon)
         {
-            if (Input.GetButtonDown(BUTTON_RESTART))
+            if (Input.GetButtonDown(BUTTON_NEXT))
             {
                 SceneManager.LoadScene(NextMapIndex);
             }
