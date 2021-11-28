@@ -11875,6 +11875,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1206855889505539652, guid: 784785e71e313924d97905f7502d119f, type: 3}
   m_PrefabInstance: {fileID: 1768912332}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &308518106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1595163654627848107, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_Name
+      value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.030165464
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.244518
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.905644
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eedcb9d027796e643967070fcdf38530, type: 3}
 --- !u!4 &317080873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1123036976935613914, guid: 03683ba834500334ba9fe7174d3e9f78, type: 3}
@@ -12716,7 +12773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlayerIsDead: 0
   NextMapIndex: 4
-  MapSong: 
+  MapSong: secret_invasion
   IsGameOver: 0
   _TotalScientists: 0
   KillEmAllMode: 0
