@@ -11,6 +11,8 @@ public class HumanPossesable : MonoBehaviour, IPossesable
     public GameObject InteractorObject;
     private Interactor _Interactor;
 
+    public Animator animator;
+
     public void Start()
     {
         if (InteractorObject)
@@ -27,11 +29,15 @@ public class HumanPossesable : MonoBehaviour, IPossesable
         {
             movement = movement.normalized;
         }
+
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
+
+        animator.SetBool("IsMoving", movement.magnitude > 0);
     }
 
     public void OnLook(Vector2 dir)
     {
+        Debug.Log(dir);
         transform.up = new Vector3(dir.x, dir.y, 0) - new Vector3(transform.position.x, transform.position.y, 0);
     }
 
