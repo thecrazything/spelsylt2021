@@ -19,6 +19,9 @@ public class NavigationBehaviour : MonoBehaviour
     private bool _IsFleeing = false;
     private Vector3 _PlayerLastPos;
 
+    public Animator Animator;
+    private bool _isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,12 @@ public class NavigationBehaviour : MonoBehaviour
         if (_NavMeshAgent.enabled && _NavMeshAgent.isStopped)
         {
             _NodePatrolTimeout += Time.deltaTime;
+        }
+
+        if (_isMoving != _NavMeshAgent.velocity.magnitude > 0f)
+        {
+            Animator.SetBool("IsMoving", _NavMeshAgent.velocity.magnitude > 0f);
+            _isMoving = _NavMeshAgent.velocity.magnitude > 0f;
         }
     }
 

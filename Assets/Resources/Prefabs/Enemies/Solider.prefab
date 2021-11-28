@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fda3a9810f79a48b76699993b5ba98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 2476766689295595152, guid: 25ae1b918983fdd4da8018e0849f79cd, type: 3}
+  body: {fileID: 5995269745400238514, guid: 0860021e25eb85f4aab07fcf5ddd77dd, type: 3}
   isScientist: 0
 --- !u!114 &3882147400859070070
 MonoBehaviour:
@@ -371,6 +371,7 @@ MonoBehaviour:
   Speed: 1
   SprintSpeed: 3
   RotationSpeed: 2
+  Animator: {fileID: 7219377673998788604}
 --- !u!195 &3882147400859070058
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -579,6 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7468156219724661649}
   - component: {fileID: 7695965840704365383}
+  - component: {fileID: 7219377673998788604}
   m_Layer: 0
   m_Name: SpriteHolder
   m_TagString: Untagged
@@ -642,7 +644,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0d940d53689e85741b8448f93d1a538f, type: 3}
+  m_Sprite: {fileID: -1485727147, guid: 0430fe62b712fd143a7c72dbdebe50cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -653,6 +655,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7219377673998788604
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4168283594478127980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ab4d59a7f684d7469b1c4889c5ec211, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6010762744734955251
 GameObject:
   m_ObjectHideFlags: 0

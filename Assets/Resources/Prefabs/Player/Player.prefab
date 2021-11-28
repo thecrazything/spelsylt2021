@@ -434,6 +434,7 @@ MonoBehaviour:
   _SubPlayer: {fileID: 1405406416}
   speed: 10
   rotSpeed: 1000
+  Animator: {fileID: 1432222219}
 --- !u!114 &1788189578423525288
 MonoBehaviour:
   m_ObjectHideFlags: 0
