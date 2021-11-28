@@ -13073,7 +13073,7 @@ MonoBehaviour:
   NextMapIndex: 0
   MapSong: kill_em_all
   IsGameOver: 0
-  _TotalScientists: 0
+  _TotalScientists: 8
   KillEmAllMode: 1
 --- !u!4 &978376937
 Transform:
