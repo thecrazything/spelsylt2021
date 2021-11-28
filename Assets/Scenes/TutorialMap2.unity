@@ -210,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Solider (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3882147400859070076, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
 --- !u!4 &78339726 stripped
@@ -501,7 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0094073
+      value: -5.37
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12016,7 +12020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2034545
+      value: 6.19
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12073,7 +12077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0094073
+      value: -5.37
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12240,7 +12244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2034545
+      value: 6.19
       objectReference: {fileID: 0}
     - target: {fileID: 5854833644921692468, guid: 2be31fcbeb49a2544a992ddb13217892, type: 3}
       propertyPath: m_LocalPosition.z

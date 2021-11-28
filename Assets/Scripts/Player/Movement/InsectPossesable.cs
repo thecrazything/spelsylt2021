@@ -11,6 +11,9 @@ public class InsectPossesable : MonoBehaviour, IPossesable
     private CapsuleCollider2D _Collider;
     public float speed = 10f;
     public float rotSpeed = 1000f;
+
+    public Animator Animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,8 @@ public class InsectPossesable : MonoBehaviour, IPossesable
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.AngleAxis(angle + 90, Vector3.forward), Time.deltaTime * rotSpeed * movement.magnitude);
         }
+
+        Animator.SetBool("IsMoving", movement != Vector2.zero);
     }
 
     public void OnLook(Vector2 dir)
