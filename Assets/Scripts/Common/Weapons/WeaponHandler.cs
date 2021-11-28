@@ -76,8 +76,6 @@ public class WeaponHandler : MonoBehaviour
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             origin.rotation = Quaternion.Slerp(origin.rotation, q, Time.deltaTime * AimSpeed);
-
-            // TODO Try to aim infront of the player? Might make it too accurate.
             float dotProd = Vector3.Dot(dir, transform.up);
             if (dotProd >= AimFuzz)
             {

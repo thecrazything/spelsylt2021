@@ -41,7 +41,7 @@ public class PlayerDetectorBehaviour : MonoBehaviour
             Vector3 dir = (_Player.transform.position - from).normalized;
             from += dir * 2.0f; // Offset so we dont hit ourself
             RaycastHit2D hit = Physics2D.Raycast(from, dir, 100f, VisibilityMask);
-            _CanSeePlayer =  !hit || IsPlayer(hit.collider);
+            _CanSeePlayer =  hit && IsPlayer(hit.collider);
             if (_CanSeePlayer)
             {
                 if (!_AwareOfPlayer)

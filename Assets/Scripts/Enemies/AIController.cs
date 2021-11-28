@@ -46,6 +46,7 @@ public class AIController : MonoBehaviour, IController
         {
             if (_NavMeshAgent)
             {
+                _NavMeshAgent.isStopped = true;
                 _NavMeshAgent.enabled = false;
             }
         }

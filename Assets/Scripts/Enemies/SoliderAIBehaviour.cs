@@ -19,7 +19,7 @@ public class SoliderAIBehaviour : MonoBehaviour, IAIBehaviour
 
         Node patrol = navigationBehaviour.GetPatrolNode();
 
-        Node searchForPlayer = new SequenceNode(new List<Node> { PlayerDetectorBehaviour.GetAwareOfPlayerNode(), navigationBehaviour.GetGoToLastPlayerLocationNode(), navigationBehaviour.GetAdjustRotation() });
+        Node searchForPlayer = new SequenceNode(new List<Node> { new InverterNode(PlayerDetectorBehaviour.GetCanSeePlayerNode()), PlayerDetectorBehaviour.GetAwareOfPlayerNode(), navigationBehaviour.GetGoToLastPlayerLocationNode(), navigationBehaviour.GetAdjustRotation() });
 
         // If we can see the player, find and kill, else search for them if we are aware, else patrol
         _Root = new SelectorNode(new List<Node> { shouldFlee, findAndKill, searchForPlayer, patrol });

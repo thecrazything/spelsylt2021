@@ -12,6 +12,7 @@ public class HumanPossesable : MonoBehaviour, IPossesable
     private Interactor _Interactor;
 
     public Animator animator;
+    public bool HasCursor = false;
 
     public void Start()
     {
@@ -37,7 +38,6 @@ public class HumanPossesable : MonoBehaviour, IPossesable
 
     public void OnLook(Vector2 dir)
     {
-        Debug.Log(dir);
         transform.up = new Vector3(dir.x, dir.y, 0) - new Vector3(transform.position.x, transform.position.y, 0);
     }
 
@@ -75,6 +75,11 @@ public class HumanPossesable : MonoBehaviour, IPossesable
             return _WeaponHandler;
         }
         return false;
+    }
+
+    public bool IsCursorVisible()
+    {
+        return HasCursor;
     }
 
     public GameObject GetGameObject()

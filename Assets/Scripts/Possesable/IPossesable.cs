@@ -15,5 +15,10 @@ public interface IPossesable
 
     bool HasFeature(FeaturesEnum features);
 
+    bool IsCursorVisible()
+    {
+        return false;
+    }
+
     GameObject GetGameObject();
 }

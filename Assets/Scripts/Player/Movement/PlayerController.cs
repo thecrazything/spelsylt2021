@@ -13,11 +13,17 @@ public class PlayerController : MonoBehaviour, IController
 
     private IPossesable _ActivePossesable;
     private IPossesable _DefaultPossesable;
+
+    public Texture2D CursorTexture;
+    public CursorMode CursorMode = CursorMode.Auto;
+    public Vector2 HotSpot = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
         _ActivePossesable = GetComponent<IPossesable>();
         _DefaultPossesable = _ActivePossesable;
+        Cursor.SetCursor(CursorTexture, HotSpot, CursorMode);
     }
 
     // Update is called once per frame
@@ -56,6 +62,7 @@ public class PlayerController : MonoBehaviour, IController
             {
                 _ActivePossesable.OnAction(ActionEnum.Iterate);
             }
+            Cursor.visible = _ActivePossesable.IsCursorVisible();
         }
     }
 

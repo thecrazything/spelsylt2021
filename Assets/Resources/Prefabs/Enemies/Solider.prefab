@@ -183,8 +183,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 100
+  m_AngularDrag: 100
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   speed: 1
   InteractorObject: {fileID: 0}
   animator: {fileID: 7219377673998788604}
+  HasCursor: 1
 --- !u!212 &3882147400859070067
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -300,8 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3201aa2bc50397a49b91cb45fa66e641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimFuzz: 0.9
-  AimSpeed: 2
+  AimFuzz: 0.95
+  AimSpeed: 5
   VisibilityMask:
     serializedVersion: 2
     m_Bits: 1
@@ -567,10 +568,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.25}
-      - {x: -1.6690247, y: 7.748978}
-      - {x: 1.7597735, y: 7.748977}
-      - {x: 0.5, y: 0.25}
+    - - {x: -1, y: 0}
+      - {x: -8, y: 9}
+      - {x: 8, y: 9}
+      - {x: 1, y: 0}
 --- !u!1 &4168283594478127980
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +742,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.72}
