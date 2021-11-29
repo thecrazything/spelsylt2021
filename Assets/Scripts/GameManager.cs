@@ -88,6 +88,10 @@ public class GameManager : MonoBehaviour
     public void OnEnemyDeath(bool isScientist)
     {
         _TotalEnemiesKilledCount += 1;
+        if (isScientist)
+        {
+            _TotalScientists -= 1;
+        }
         CheckIfLost();
         if (KillEmAllMode && _TotalEnemiesKilledCount >= _TotalEnemyCount)
         {
@@ -125,14 +129,10 @@ public class GameManager : MonoBehaviour
 
     void CheckIfLost()
     {
-        // If number of scientist = 0
-        // and the exit door has not been opened
-        // OR the player is dead
-        int scientistsLeft = GameObject.FindGameObjectsWithTag("Scientist").Length;
 
         if (!KillEmAllMode)
         {
-            if (scientistsLeft == 0 && !IsDoorsOpen())
+            if (_TotalScientists <= 0 && !IsDoorsOpen())
             {
                 HandlePlayerLost("Locked in");
                 _PlayerIsDead = true;
