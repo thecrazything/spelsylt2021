@@ -35,6 +35,8 @@ public class Puppeteering : MonoBehaviour
         if (_CurrentPuppet)
         {
             _PuppetTimer += Time.deltaTime;
+            float percent = _PuppetTimer / _PuppetMaxtime;
+            UIHandler.GetInstance().SetVignette(percent);
             if (_PuppetTimer >= _PuppetMaxtime)
             {
                 DropPuppet();
@@ -44,7 +46,6 @@ public class Puppeteering : MonoBehaviour
 
     public void Puppeteer()
     {
-        // TODO check if puppet avalible, then run MakeTargetPuppet on that
         if (!_CurrentPuppet && _Target)
         {
             MakeTargetPuppet(_Target);
@@ -57,6 +58,7 @@ public class Puppeteering : MonoBehaviour
 
     private void MakeTargetPuppet(GameObject target)
     {
+        UIHandler.GetInstance().ResetVignette();
         _PuppetTimer = 0;
         Puppetable puppet = target.GetComponent<Puppetable>();
         if (!puppet)
@@ -76,6 +78,7 @@ public class Puppeteering : MonoBehaviour
     {
         if (_CurrentPuppet)
         {
+            UIHandler.GetInstance().ResetVignette();
             _PlayerController.ResetPossessed();
             transform.parent = null;
             IDeathHandler deathHandler = _CurrentPuppet?.gameObject?.GetComponent<IDeathHandler>();
