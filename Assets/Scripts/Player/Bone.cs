@@ -13,7 +13,10 @@ public class Bone : MonoBehaviour
 
     void Start()
     {
-        subBone = SubBoneGO.GetComponent<Bone>();
+        if (SubBoneGO) {
+            subBone = SubBoneGO.GetComponent<Bone>();
+        }
+
         startingRotation = transform.localEulerAngles;
     }
 
