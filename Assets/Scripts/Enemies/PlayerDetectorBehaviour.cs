@@ -11,10 +11,13 @@ public class PlayerDetectorBehaviour : MonoBehaviour
     public LayerMask VisibilityMask;
     GameObject _Player;
 
+    public Animator animator;
+    bool useAnimator = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (animator) useAnimator = true;
     }
 
     // Update is called once per frame
@@ -54,6 +57,10 @@ public class PlayerDetectorBehaviour : MonoBehaviour
             {
                 _AwarnessTimer = 0;
             }
+        }
+
+        if (useAnimator) {
+            animator.SetBool("IsAlerted", _AwareOfPlayer);
         }
     }
 

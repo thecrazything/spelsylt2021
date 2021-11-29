@@ -543,6 +543,7 @@ MonoBehaviour:
   VisibilityMask:
     serializedVersion: 2
     m_Bits: 1
+  animator: {fileID: 7219377673998788604}
 --- !u!60 &3882147402322684123
 PolygonCollider2D:
   m_ObjectHideFlags: 0
