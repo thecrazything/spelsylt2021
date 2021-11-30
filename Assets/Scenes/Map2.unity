@@ -233,6 +233,63 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1001 &72546435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1595163654627848107, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_Name
+      value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.030165464
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.244518
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.905644
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345791928157207436, guid: eedcb9d027796e643967070fcdf38530, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eedcb9d027796e643967070fcdf38530, type: 3}
 --- !u!1001 &89610700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24975,7 +25032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlayerIsDead: 0
   NextMapIndex: 5
-  MapSong: 
+  MapSong: secret_invasion
   IsGameOver: 0
   _TotalScientists: 0
   KillEmAllMode: 0
