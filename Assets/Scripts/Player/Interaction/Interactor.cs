@@ -75,7 +75,6 @@ public class Interactor : MonoBehaviour
         Vector3 targetPos = transform.position;
         Vector3 dir = origin - targetPos;
         RaycastHit2D hit = Physics2D.Raycast(origin + (dir * 1f), dir, 10f, LayerMask);
-        Debug.Log(hit ? hit.collider.name : "none");
         return hit && hit.collider.name == target.name;
     }
 }
