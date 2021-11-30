@@ -13,7 +13,8 @@ public class DoorController : MonoBehaviour, IInteractable
 
     public void Interact(GameObject player)
     {
-        if (player.name == "Scientist") {
+        ScientistAIBehaviour behavesLikeScientist = player.GetComponent<ScientistAIBehaviour>();
+        if (behavesLikeScientist != null) {
             Door.SetActive(false);
         }
     }
