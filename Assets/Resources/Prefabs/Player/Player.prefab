@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootBoneGO: {fileID: 386791140266314848}
+  turn: 0
 --- !u!1 &593385508555672330
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +827,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.020000001
       objectReference: {fileID: 0}
+    - target: {fileID: 683650805199822136, guid: 06f7383551a382443a6c1e76a9c46a66, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f054518a09634064c9be479240b796c2, type: 3}
     - target: {fileID: 2805404538631728759, guid: 06f7383551a382443a6c1e76a9c46a66, type: 3}
       propertyPath: m_Name
       value: leg7
