@@ -17,6 +17,15 @@ public class AIManager : MonoBehaviour
         {
             LoadAllAI();
         }
+        var nodes = GameObject.FindGameObjectsWithTag("FleeNode");
+
+        FleeNodes = new Transform[nodes.Length];
+        var index = 0;
+        foreach (GameObject node in nodes)
+        {
+            FleeNodes[index] = node.transform;
+            index++;
+        }
     }
 
     // Update is called once per frame

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PuppetFinder : MonoBehaviour
 {
+    public LayerMask Mask;
     private HashSet<GameObject> _Targets = new HashSet<GameObject>();
     private Puppeteering _Puppeteering;
 
@@ -49,20 +50,33 @@ public class PuppetFinder : MonoBehaviour
             GameObject closest = null;
             float closestDist = 0;
             Vector3 ourPos = transform.parent.parent.position;
-            foreach(GameObject target in _Targets)
+            foreach (GameObject target in _Targets)
             {
                 target.GetComponent<SpriteRenderer>().enabled = false;
                 Vector3 targetPos = target.transform.position;
                 float distance = Vector3.Distance(ourPos, targetPos);
                 if (!closest || distance < closestDist)
                 {
-                    closest = target;
-                    closestDist = distance;
+                    Vector3 dir = targetPos - ourPos;
+                    Vector3 origin = ourPos + (dir * 0.5f);
+                    RaycastHit2D hit = Physics2D.Raycast(origin, targetPos, distance, Mask);
+                    Debug.Log(hit ? hit.collider.name : "none");
+                    if (hit && hit.collider.name == target.name)
+                    {
+                        closest = target;
+                        closestDist = distance;
+                    }
                 }
             }
-            _Puppeteering.SetTarget(closest);
-            closest.GetComponent<SpriteRenderer>().enabled = true;
-            // Probably move the 'show target' bits to Puppetable
+            if (closest)
+            {
+                _Puppeteering.SetTarget(closest);
+                closest.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                _Puppeteering.NoTarget();
+            }
         }
     }
 
