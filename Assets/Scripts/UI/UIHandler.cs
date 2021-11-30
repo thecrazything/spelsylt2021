@@ -46,7 +46,7 @@ public class UIHandler : MonoBehaviour
     public void ShowEndMenu(int enemiesKilled, int totalEnemies, int timesDetected)
     {
         EndPanel.SetActive(true);
-        EnemiesKilled.text = enemiesKilled.ToString() + "/" + totalEnemies.ToString();
+        EnemiesKilled.text = enemiesKilled.ToString() + " of " + totalEnemies.ToString();
         TimesDetected.text = timesDetected.ToString();
     }
 
