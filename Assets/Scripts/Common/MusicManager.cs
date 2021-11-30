@@ -9,6 +9,7 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _AudioSource = GetComponent<AudioSource>();
         if (instance == null)
         {
             instance = this;
@@ -16,9 +17,9 @@ public class MusicManager : MonoBehaviour
         }
         else if (instance != this)
         {
+            _AudioSource?.Stop();
             Destroy(gameObject);
         }
-        _AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class MusicManager : MonoBehaviour
     {
         if (_AudioSource.clip != mapSong || !_AudioSource.isPlaying)
         {
+            _AudioSource.Stop();
             _AudioSource.clip = mapSong;
             _AudioSource.Play();
         }
