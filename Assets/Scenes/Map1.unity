@@ -12902,6 +12902,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vent
       objectReference: {fileID: 0}
+    - target: {fileID: 6320539804647911094, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
 --- !u!1 &495474095
@@ -14688,7 +14692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6320539804647911094, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
@@ -18989,6 +18993,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vent (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6320539804647911094, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
 --- !u!4 &1514067219 stripped
@@ -19492,6 +19500,10 @@ PrefabInstance:
     - target: {fileID: 6320539804647911093, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
       propertyPath: m_Name
       value: Vent (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320539804647911094, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3069fcb0599cb3a4aaa34817f2c06247, type: 3}
