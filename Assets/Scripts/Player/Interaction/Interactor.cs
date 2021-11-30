@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Interactor : MonoBehaviour
 {
+    public LayerMask LayerMask;
     Transform focusedTransform = null;
+    private ISet<Transform> _tracked = new HashSet<Transform>();
+
     IInteractable focusedInteractable {
         get {
             if (focusedTransform == null) return null;
@@ -14,29 +17,35 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        foreach(var t in _tracked)
+        {
+            if (CanSee(t.gameObject))
+            {
+                if (focusedTransform != null)
+                {
+                    focusedInteractable.OnUnfocused();
+                }
+                focusedTransform = t;
+                focusedInteractable.OnFocused();
+            }
+            else
+            {
+                focusedInteractable?.OnUnfocused();
+                focusedTransform = null;
+            }
+        }
+    }
+
     void OnDestroy()
     {
-        UnFocus();
+        focusedInteractable?.OnUnfocused();
     }
 
     void SetFocused(Transform transform)
     {
-        if (focusedTransform != null) {
-            focusedInteractable.OnUnfocused();
-        }
-
-        focusedTransform = transform;
-        focusedInteractable.OnFocused();
-    }
-
-    void UnFocus()
-    {
-        if (focusedTransform == null) {
-            return;
-        }
-
-        focusedInteractable.OnUnfocused();
-        focusedTransform = null;
+        _tracked.Add(transform);
     }
 
     public void Interact()
@@ -57,8 +66,15 @@ public class Interactor : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (focusedTransform == collision.transform) {
-            UnFocus();
-        }
+        _tracked.Remove(collision.transform);
+    }
+
+    private bool CanSee(GameObject target)
+    {
+        Vector3 origin = transform.parent.position;
+        Vector3 targetPos = transform.position;
+        Vector3 dir = origin - targetPos;
+        RaycastHit2D hit = Physics2D.Raycast(origin + (dir * 1f), dir, 10f, LayerMask);
+        return hit && hit.collider.name == target.name;
     }
 }
