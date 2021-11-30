@@ -9,7 +9,7 @@ public class ProjectileWeapon : MonoBehaviour, IWeapon
     public float FireRate = 1.0f;
     public float BulletSpread = 1.0f;
     public float Range = 100f;
-    public float FireOffset = 2.0f;
+    private float FireOffset =  0.5f;
     public LayerMask VisibilityMask;
     private GameObject _Projectile;
     // Start is called before the first frame update

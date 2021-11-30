@@ -12384,7 +12384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1170720677759965588, guid: f0e9ea3c48174304bad9115becb67449, type: 3}
       propertyPath: FleeNodes.Array.size
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1170720677759965588, guid: f0e9ea3c48174304bad9115becb67449, type: 3}
       propertyPath: FleeNodes.Array.data[0]
