@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour, IController
     void cursorSet(Texture2D tex)
     {
         CursorMode mode = CursorMode.ForceSoftware;
-        var xspot = tex.width / 4;
-        var yspot = tex.height / 4;
+        var xspot = tex.width / 2;
+        var yspot = tex.height / 2;
         Vector2 hotSpot = new Vector2(xspot, yspot);
         Cursor.SetCursor(tex, hotSpot, mode);
     }
