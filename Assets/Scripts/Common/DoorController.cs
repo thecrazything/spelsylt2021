@@ -19,7 +19,7 @@ public class DoorController : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnFocused()
+    public void OnFocused(GameObject focuser)
     {
         return;
     }

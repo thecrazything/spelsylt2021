@@ -6,7 +6,7 @@ public interface IInteractable
 {
     void OnUnfocused();
 
-    void OnFocused();
+    void OnFocused(GameObject focuser);
 
     void Interact(GameObject player);
 

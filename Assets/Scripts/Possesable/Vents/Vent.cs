@@ -88,9 +88,10 @@ public class Vent : MonoBehaviour, IPossesable, IInteractable
         _Rendered.color = Color.white;
     }
 
-    public void OnFocused()
+    public void OnFocused(GameObject focuser)
     {
-        _Rendered.color = Color.red;
+        if (focuser.CompareTag("Player")) 
+            _Rendered.color = Color.red;
     }
 
     public void Interact(GameObject player)

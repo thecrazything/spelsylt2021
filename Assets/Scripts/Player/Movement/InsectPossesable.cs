@@ -69,6 +69,7 @@ public class InsectPossesable : MonoBehaviour, IPossesable
         _SubPlayer.SetActive(false);
         _Collider.enabled = false;
         _Rigid.simulated = false;
+        _Interactor.ForceUnfocus();
     }
 
     public bool HasFeature(FeaturesEnum features)

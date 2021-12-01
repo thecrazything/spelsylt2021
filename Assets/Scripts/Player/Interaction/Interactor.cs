@@ -28,7 +28,7 @@ public class Interactor : MonoBehaviour
                     focusedInteractable.OnUnfocused();
                 }
                 focusedTransform = t;
-                focusedInteractable.OnFocused();
+                focusedInteractable.OnFocused(transform.parent.gameObject);
             }
             else
             {
@@ -39,6 +39,11 @@ public class Interactor : MonoBehaviour
     }
 
     void OnDestroy()
+    {
+        focusedInteractable?.OnUnfocused();
+    }
+
+    public void ForceUnfocus()
     {
         focusedInteractable?.OnUnfocused();
     }
