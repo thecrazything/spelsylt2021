@@ -223,6 +223,9 @@ MonoBehaviour:
   InteractorObject: {fileID: 0}
   animator: {fileID: 7219377673998788604}
   HasCursor: 1
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!212 &3882147400859070067
 SpriteRenderer:
   m_ObjectHideFlags: 0

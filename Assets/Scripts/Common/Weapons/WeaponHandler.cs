@@ -81,7 +81,6 @@ public class WeaponHandler : MonoBehaviour
             {
                 Vector3 fireDir = origin.up;
                 Vector3 from = origin.position;
-                from += fireDir * 2.0f; // Offset so we dont hit ourself
                 RaycastHit2D hit = Physics2D.Raycast(from, fireDir, 100f, VisibilityMask);
                 return !hit || PlayerDetectorBehaviour.IsPlayer(hit.collider) ? NodeStates.Success : NodeStates.Failure;
             }

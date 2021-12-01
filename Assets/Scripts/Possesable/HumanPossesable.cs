@@ -13,6 +13,7 @@ public class HumanPossesable : MonoBehaviour, IPossesable
 
     public Animator animator;
     public bool HasCursor = false;
+    public LayerMask playerMask;
 
     public void Start()
     {
@@ -61,6 +62,10 @@ public class HumanPossesable : MonoBehaviour, IPossesable
     public void OnPossess(IController controller)
     {
         _Controller = controller;
+        if (controller is PlayerController)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
     }
 
     public void OnUnPossess()
