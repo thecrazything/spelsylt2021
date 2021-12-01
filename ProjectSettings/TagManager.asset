@@ -18,9 +18,9 @@ TagManager:
   - Detectors
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Interactable
   - 
   - 
   - 
