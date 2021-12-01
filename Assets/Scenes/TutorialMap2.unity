@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 3882147400859070067, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3882147400859070076, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
       propertyPath: m_Name
       value: Solider (1)
@@ -11999,6 +12003,10 @@ PrefabInstance:
     - target: {fileID: 3882147400859070065, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3882147400859070067, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3882147400859070070, guid: 0e618d5f4ec57d1478b870ecf05b9631, type: 3}
       propertyPath: AimFuzz

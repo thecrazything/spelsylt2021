@@ -10842,6 +10842,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 6812296352206913890, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6812296352206913901, guid: 285a3f77025300e42a14d969dc66d21b, type: 3}
       propertyPath: m_Name
       value: Scientist
