@@ -427,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorTexture: {fileID: 2800000, guid: e57cbf9bfe1f66b4fa8568d8d2fec642, type: 3}
+  DefaultCursorTexture: {fileID: 2800000, guid: 7a6f41f85bd200c4cac03d68b6028377, type: 3}
 --- !u!114 &593385508555672331
 MonoBehaviour:
   m_ObjectHideFlags: 0
