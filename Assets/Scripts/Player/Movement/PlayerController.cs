@@ -15,15 +15,23 @@ public class PlayerController : MonoBehaviour, IController
     private IPossesable _DefaultPossesable;
 
     public Texture2D CursorTexture;
-    public CursorMode CursorMode = CursorMode.Auto;
-    public Vector2 HotSpot = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         _ActivePossesable = GetComponent<IPossesable>();
         _DefaultPossesable = _ActivePossesable;
-        Cursor.SetCursor(CursorTexture, HotSpot, CursorMode);
+        cursorSet(CursorTexture);
+        Cursor.visible = false;
+    }
+
+    void cursorSet(Texture2D tex)
+    {
+        CursorMode mode = CursorMode.ForceSoftware;
+        var xspot = tex.width / 4;
+        var yspot = tex.height / 4;
+        Vector2 hotSpot = new Vector2(xspot, yspot);
+        Cursor.SetCursor(tex, hotSpot, mode);
     }
 
     // Update is called once per frame
@@ -36,6 +44,8 @@ public class PlayerController : MonoBehaviour, IController
 
         float x = Input.GetAxis(AXIS_HORIZONTAL);
         float y = Input.GetAxis(AXIS_VERTICAL);
+
+        Cursor.visible = _ActivePossesable != null && _ActivePossesable.IsCursorVisible();
 
         // Normalize mouse relative to screen center
         Vector2 mousePos = new Vector2(Input.mousePosition.x - Screen.width / 2, Input.mousePosition.y - Screen.height / 2);
@@ -62,7 +72,6 @@ public class PlayerController : MonoBehaviour, IController
             {
                 _ActivePossesable.OnAction(ActionEnum.Iterate);
             }
-            Cursor.visible = _ActivePossesable.IsCursorVisible();
         }
     }
 

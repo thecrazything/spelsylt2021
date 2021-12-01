@@ -59,7 +59,8 @@ public class PuppetFinder : MonoBehaviour
                 {
                     Vector3 dir = targetPos - ourPos;
                     Vector3 origin = ourPos + (dir * 0.6f);
-                    RaycastHit2D hit = Physics2D.Raycast(origin, targetPos, 100f, Mask);
+                    RaycastHit2D hit = Physics2D.Raycast(origin, dir, 100f, Mask);
+
                     if (hit && hit.collider.name == target.name)
                     {
                         closest = target;
