@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 385
 --- !u!60 &204488557
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
 --- !u!212 &1405406423
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 1904127574}
   - component: {fileID: 1904127573}
   - component: {fileID: 1904127575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -42,7 +42,6 @@ public class PlayerDetectorBehaviour : MonoBehaviour
             // Test if anything is blocking our view of the player
             Vector3 from = transform.parent.position;
             Vector3 dir = (_Player.transform.position - from).normalized;
-            from += dir * 2.0f; // Offset so we dont hit ourself
             RaycastHit2D hit = Physics2D.Raycast(from, dir, 100f, VisibilityMask);
             _CanSeePlayer =  hit && IsPlayer(hit.collider);
             if (_CanSeePlayer)

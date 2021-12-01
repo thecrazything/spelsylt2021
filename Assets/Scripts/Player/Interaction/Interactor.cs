@@ -72,9 +72,9 @@ public class Interactor : MonoBehaviour
     private bool CanSee(GameObject target)
     {
         Vector3 origin = transform.parent.position;
-        Vector3 targetPos = transform.position;
-        Vector3 dir = origin - targetPos;
-        RaycastHit2D hit = Physics2D.Raycast(origin + (dir * 1f), dir, 10f, LayerMask);
+        Vector3 targetPos = target.transform.position;
+        Vector3 dir = targetPos - origin;
+        RaycastHit2D hit = Physics2D.Raycast(origin, dir, 10f, LayerMask);
         return hit && hit.collider.name == target.name;
     }
 }

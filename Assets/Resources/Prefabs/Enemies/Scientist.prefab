@@ -103,7 +103,7 @@ MonoBehaviour:
   _AwareOfPlayer: 0
   VisibilityMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 321
   animator: {fileID: 0}
 --- !u!60 &6812296350717478858
 PolygonCollider2D:
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 6812296352206913912}
   - component: {fileID: 6812296352206913915}
   - component: {fileID: 945719307201686553}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scientist
   m_TagString: AI
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 1698260789962509361}
   - component: {fileID: 7364849322630965891}
   - component: {fileID: 7042999711503594777}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
 --- !u!70 &7042999711503594777
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
