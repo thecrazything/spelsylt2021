@@ -67,6 +67,11 @@ public class Interactor : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         _tracked.Remove(collision.transform);
+        if (focusedTransform == collision.transform)
+        {
+            focusedInteractable?.OnUnfocused();
+            focusedTransform = null;
+        }
     }
 
     private bool CanSee(GameObject target)
