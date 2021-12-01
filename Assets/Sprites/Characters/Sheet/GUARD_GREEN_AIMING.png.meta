@@ -107,12 +107,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 12
         y: 0
-        width: 128
+        width: 64
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 0
-        width: 128
+        width: 67
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 261
         y: 0
-        width: 128
+        width: 70
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,12 +170,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 392
         y: 0
-        width: 128
+        width: 67
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 524
         y: 0
-        width: 128
+        width: 63
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 648
         y: 0
-        width: 128
+        width: 67
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_6
       rect:
         serializedVersion: 2
-        x: 768
+        x: 773
         y: 0
-        width: 128
+        width: 70
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,12 +254,12 @@ TextureImporter:
       name: GUARD_GREEN_AIMING_7
       rect:
         serializedVersion: 2
-        x: 896
+        x: 904
         y: 0
-        width: 128
+        width: 67
         height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
