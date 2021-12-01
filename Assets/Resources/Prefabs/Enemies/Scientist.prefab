@@ -557,7 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 257
 --- !u!70 &7042999711503594777
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
